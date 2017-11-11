@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="businesslogic" />
+        <module name="persistance" />
+        <module name="webappcontroller" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="businesslogic" target="1.8" />
+      <module name="persistance" target="1.8" />
+      <module name="testmaven" target="1.8" />
+      <module name="webappcontroller" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

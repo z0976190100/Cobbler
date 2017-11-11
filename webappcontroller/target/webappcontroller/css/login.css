@@ -55,10 +55,7 @@ a:hover, a:focus {
 }
 
 .login-screen {
-    background-image: url("/img/Shoemaker-Wallpaper-Gallery-1024x677.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url("ShoemakerWallpaperGallery1024x677.jpg") no-repeat fixed center;
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;

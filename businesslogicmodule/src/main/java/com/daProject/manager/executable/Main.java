@@ -19,10 +19,10 @@ public class Main {
 
         user1.setFirstName("Cartman");
         user1.setSurName("Eric");
-        user1.setAge(12);
+       // user1.setAge(12);
         user2.setFirstName("Broflowwwsky");
         user2.setSurName("Kyle");
-        user2.setAge(13);
+       // user2.setAge(13);
 
 
 
