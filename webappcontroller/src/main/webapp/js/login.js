@@ -1,22 +1,24 @@
 
 $(function() {
     $("#card").flip({
-        trigger: 'click'
+        trigger: 'manual'
     });
 });
 
 
-/*
-$("#flip-btn").click(function() {
 
-    $(".signin_form").css('opacity', '0');
-    $(".signup_form").css('opacity', '100');
+$(document).ready(function (){
+    $("#flip-btn").click(function() {
+
+        $(".signin_form").css('opacity', '0');
+        $(".signup_form").css('opacity', '100');
 
 
-    $("#card").flip(true);
+        $("#card").flip(true);
 
-    return false;
-});
+        return false;
+    });
+
 
 $("#unflip-btn").click(function(){
 
@@ -28,7 +30,8 @@ $("#unflip-btn").click(function(){
     return false;
 
 });
-*/
+});
+
 
 
 
