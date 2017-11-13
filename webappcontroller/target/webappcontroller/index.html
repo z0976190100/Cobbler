@@ -73,11 +73,11 @@
                         </form>
                     </div>
                     <div class="back signup_form" style="opacity: 0;">    <!--back-->
-                        <p>Sign </p>
+                        <p>Регистрация</p>
                         <form class="login-form">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Username">
+                                    <input id="name_input" type="text" class="form-control" placeholder="Имя">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-user"></i>
                                       </span>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Username">
+                                    <input id="surname_input" type="text" class="form-control" placeholder="Фамилия">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-user"></i>
                                       </span>
@@ -93,31 +93,39 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
+                                    <input id="phonenumber_input" type="text" class="form-control" placeholder="Телефон в формате +38**********">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" class="form-control secret1" placeholder="Пароль">                                 <!-- TO DO logic for confirming the pass --->
                                     <span class="input-group-btn"><button type="button" class="btn btn-cyan"><span class="fa fa-refresh"></span></button></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                    <input id="secret_input" type="password" class="form-control secret2" placeholder="Пароль повторно">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-lock"></i>
                                       </span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="Email">
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-envelope"></i>
                                       </span>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-group sign-btn">
-                                <input type="submit" class="btn" value="Sign up">
+                                <input type="button" class="btn btn-cyan" onclick="main.registration()" value="Зарегистрироваться">
                                 <br><br>
-                                <p>You have already Account So <button  id="unflip-btn" class="btn btn-cyan signup">Log in</button></p>
+                                <p>Уже зарегистрированы? <input  id="unflip-btn" class="btn btn-cyan signup" value="Войти"/></p>
                             </div>
                         </form>
                     </div>

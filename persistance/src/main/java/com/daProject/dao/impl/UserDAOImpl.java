@@ -43,10 +43,10 @@ import java.sql.SQLException;
 
 
         @Override
-        public User getUserByFirstName(String name) {
+        public User getUserBySurame(String name) {
             User user = null;
             try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                Query query = session.createQuery("FROM User WHERE firstName =:paramName");
+                Query query = session.createQuery("FROM User WHERE surname =:paramName");
                 query.setParameter("paramName", name);
                 user = (User) query.uniqueResult();
             } catch (Exception e) {
@@ -89,6 +89,11 @@ import java.sql.SQLException;
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        public Long getUserIdBySurname(String surname) throws SQLException {
+            return null;
         }
 
     }

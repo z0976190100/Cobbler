@@ -17,7 +17,7 @@ public class LoginManager {
         String password = paramMap.get("password")[0];
         User currentUser = null;
         try {
-            currentUser = Factory.getInstance().getUserDAO().getUserByFirstName(name);
+            currentUser = Factory.getInstance().getUserDAO().getUserBySurame(name);
             }catch(SQLException e){
             System.err.println("Enable to connect");
             e.printStackTrace();

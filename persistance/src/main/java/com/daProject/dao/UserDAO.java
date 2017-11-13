@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 
     public interface UserDAO {
-        public void addUser(User user) throws SQLException;
-        public void updateUser(User user) throws SQLException;
-        public User getUserByFirstName(String name) throws SQLException;
-        public void deleteUser(User user) throws SQLException;
-        public Long getUserIdByFirstName(String name) throws SQLException;
-        public User getUserById(long id)throws SQLException;
+         void addUser(User user) throws SQLException;
+         void updateUser(User user) throws SQLException;
+         User getUserBySurame(String surname) throws SQLException;
+         void deleteUser(User user) throws SQLException;
+         Long getUserIdBySurname(String surname) throws SQLException;
+         User getUserById(long id)throws SQLException;
     }
 

@@ -37,30 +37,42 @@ $("#unflip-btn").click(function(){
 
 var main = {
     registration: function () {
-        var input = document.getElementById("myinput").value;
-        /*var email = document.getElementById("mailReg").value;
-        var pass = document.getElementById("passReg").value;*/
+        var $name = $("#name_input").val();
+        var $surname = $("#surname_input").val();
+        var $phonenumber = $("#phonenumber_input").val();
+        var $secret = $("#secret_input").val();
+console.log($name);
         $.ajax({
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "registration", login: input}, // email: email, password: pass},
-            success: function (data) {
-                $("#mybutt").attr("value", data.login);
+            data: {requestType:"registration",name:$name,surname:$surname,phonenumber:$phonenumber,secret:$secret},
+            success: $(function () {
+                // display "now enter with your new credentials" on login page
+               // $("#mybutt").attr("value", data.login);
+                $(".signin_form").css('opacity', '100');
+                $(".signup_form").css('opacity', '0');
+
+                $("#card").flip(false);
+console.log("success");
+                return false;
 
                 //document.location.href = 'index.html';
-            }
+            })
         });
     },
 
     log_in: function () {
-        var log = document.getElementById("login").value;
-        var pass = document.getElementById("password").value;
+        /*var log = document.getElementById("login").value;
+        var pass = document.getElementById("password").value;*/
+        var $phonenumber = $("#phonenumber_input").value;
+        var $secret = $("#secret_input").value;
+
         $.ajax({
             type: "POST",
             url: "/test-maven",
             dataType: "json",
-            data: {requestType: "login", login: log, password: pass},
+            data: {requestType: "login", login: log, password: pass},//!!!!!!!!!!!!!
             success: function (data) {
                 if(data.name == "error")
                     document.location.href = 'errorPage.html';
