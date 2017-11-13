@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
-
+import static com.daProject.manager.executable.EntityManager.dataBaseFiller;
 
 
 /**
@@ -27,6 +28,8 @@ public class APIHandlerServlet extends HttpServlet{
         protected abstract JSONStreamAware processRequest(HttpServletRequest request) throws Exception;
 
     }
+
+
 
   private static Map<String, APIRequestHandler> apiRequestHandlers = new HashMap<>();
 
@@ -62,6 +65,12 @@ public class APIHandlerServlet extends HttpServlet{
         resp.setDateHeader("Expires", 0);
 
         JSONStreamAware response = JSON.emptyJSON;
+
+        try {
+            dataBaseFiller();
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
 
         try {
 

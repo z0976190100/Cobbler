@@ -44,3 +44,5 @@ public class TechOperationGeneral {
         this.cost = cost;
     }
 }
+
+

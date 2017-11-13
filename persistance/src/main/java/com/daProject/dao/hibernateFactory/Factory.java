@@ -1,6 +1,9 @@
 package com.daProject.dao.hibernateFactory;
 
 
+import com.daProject.dao.TechOperationGeneralDAO;
+import com.daProject.dao.entity.TechOperationGeneral;
+import com.daProject.dao.impl.TechOperationGeneralDAOImpl;
 import com.daProject.dao.impl.UserDAOImpl;
 import com.daProject.dao.impl.ValiDataDAOImpl;
 import com.daProject.dao.UserDAO;
@@ -10,6 +13,7 @@ public class Factory {
 
     private static UserDAO userDAO = null;
     private static ValiDataDAO valiDataDAO = null;
+    private static TechOperationGeneralDAO tODAO = null;
 
     private static Factory instance = null;
 
@@ -27,6 +31,12 @@ public class Factory {
         return userDAO;
     }
 
+    public TechOperationGeneralDAO getTechOperationGeneralDAO() {
+        if (tODAO == null) {
+            tODAO = new TechOperationGeneralDAOImpl();
+        }
+        return tODAO;
+    }
 
     public ValiDataDAO getValiDataDAO() {
         if (valiDataDAO == null) {

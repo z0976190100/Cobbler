@@ -29,6 +29,13 @@ public class TechRoute {
         this.id = id;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "ops_routs", catalog = "test", joinColumns = {
+            @JoinColumn(name = "id")},
+            inverseJoinColumns = {
+            @JoinColumn (name = "")
+    })
+
     @Column(name = "ops_list")
     public List getOpsList() {
         return opsList;
