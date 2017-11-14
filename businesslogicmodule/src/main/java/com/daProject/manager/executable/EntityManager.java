@@ -20,14 +20,14 @@ public class EntityManager {
         TechOperationGeneral to3 = new TechOperationGeneral();
         TechOperationGeneral to4 = new TechOperationGeneral();
 
-        to1.setTitle("Glue");
-        to1.setCost(BigInteger.valueOf(220l));
-        to2.setTitle("Deglue");
-        to2.setCost(BigInteger.valueOf(110l));
-        to3.setTitle("Binding");
-        to3.setCost(BigInteger.valueOf(800l));
-        to4.setTitle("Clamping");
-        to4.setCost(BigInteger.valueOf(100l));
+        to1.setTitle("Приклейка");
+        to1.setCost(BigInteger.valueOf(22l));
+        to2.setTitle("Отклейка");
+        to2.setCost(BigInteger.valueOf(11l));
+        to3.setTitle("Затяжка");
+        to3.setCost(BigInteger.valueOf(80l));
+        to4.setTitle("Фен");
+        to4.setCost(BigInteger.valueOf(10l));
 
         Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to1);
         Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to2);

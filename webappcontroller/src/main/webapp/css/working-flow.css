@@ -1,0 +1,35 @@
+
+
+#accordion2, #accordion {
+    width: 333px;
+    display: inline-block;
+}
+
+#first-accordion, #second-accordion {
+    width: 333px;
+    height: 500px;
+    display: inline-block;
+    overflow: scroll;
+    position: fixed;
+}
+
+.mcard {
+    position: fixed;
+}
+
+#first-header-div {
+    width: 333px;
+
+    background-color: yellowgreen;
+
+}
+
+header {
+    height: 30px;
+    width: auto;
+}
+
+.header-divs {
+    display:inline-block;
+}
+
