@@ -38,6 +38,7 @@ public class APIHandlerServlet extends HttpServlet{
 
         map.put("login", LoginServlet.getInstance());
         map.put("registration", RegistrationServlet.getInstance());
+        map.put("getTechRouteByModel", TechRouteServlet.getInstance());
         /*map.put("image", ImageServlet.getInstance());
         map.put("comment", CommentServlet.getInstance());*/
         apiRequestHandlers = Collections.unmodifiableMap(map);
@@ -68,8 +69,8 @@ public class APIHandlerServlet extends HttpServlet{
 
         try {
             dataBaseFiller();
-        }catch (SQLException sqle){
-            sqle.printStackTrace();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
 
         try {
@@ -99,7 +100,7 @@ public class APIHandlerServlet extends HttpServlet{
         } finally {
             resp.setContentType("text/plain; charset=UTF-8");
             try (Writer writer = resp.getWriter()) {
-                response.writeJSONString(writer);
+                response.writeJSONString(writer);//.append((CharSequence)((JSONObject) response).get("operation_list")));
             }
         }
 

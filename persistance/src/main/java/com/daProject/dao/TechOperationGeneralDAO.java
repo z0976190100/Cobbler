@@ -7,4 +7,5 @@ import java.sql.SQLException;
 public interface TechOperationGeneralDAO {
 
     void addTechOperation(TechOperationGeneral to) throws SQLException;
+    TechOperationGeneral getTOGByTitle(String title) throws SQLException;
 }

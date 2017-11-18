@@ -4,6 +4,7 @@ import com.daProject.dao.TechOperationGeneralDAO;
 import com.daProject.dao.entity.TechOperationGeneral;
 import com.daProject.dao.hibernateFactory.HibernateSessionFactory;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -29,5 +30,18 @@ public class TechOperationGeneralDAOImpl implements TechOperationGeneralDAO {
             }
         }
 
+    @Override
+    public TechOperationGeneral getTOGByTitle(String title) throws SQLException {
+        TechOperationGeneral tog = null;
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM TechOperationGeneral WHERE title =:paramName");
+            query.setParameter("paramName", title);
+            tog = (TechOperationGeneral) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
+        }
+        return tog;
     }
+}
 

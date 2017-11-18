@@ -31,7 +31,7 @@ public class ValiData {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(  )
     @JoinColumn(name = "id")
 
     public User getUser() {

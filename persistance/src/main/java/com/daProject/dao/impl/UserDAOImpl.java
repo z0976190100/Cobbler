@@ -43,11 +43,11 @@ import java.sql.SQLException;
 
 
         @Override
-        public User getUserBySurame(String name) {
+        public User getUserBySurame(String surname) {
             User user = null;
             try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                Query query = session.createQuery("FROM User WHERE surname =:paramName");
-                query.setParameter("paramName", name);
+                Query query = session.createQuery("FROM User WHERE surName =:paramName");
+                query.setParameter("paramName", surname);
                 user = (User) query.uniqueResult();
             } catch (Exception e) {
                 e.printStackTrace();

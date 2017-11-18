@@ -1,41 +1,110 @@
 package com.daProject.manager.executable;
 
+//import com.daProject.dao.entity.TOpsTRouts;
+
 import com.daProject.dao.entity.TechOperationGeneral;
 
+import com.daProject.dao.entity.TechRoute;
 import com.daProject.dao.hibernateFactory.Factory;
 
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EntityManager {
 
     static boolean DBfillerStatus = false;
 
-    public static boolean dataBaseFiller() throws SQLException{
+    public static boolean dataBaseFiller() throws SQLException {
 
-        if(DBfillerStatus) return DBfillerStatus;
+        if (DBfillerStatus) return DBfillerStatus;
 
-        TechOperationGeneral to1 = new TechOperationGeneral();
-        TechOperationGeneral to2 = new TechOperationGeneral();
-        TechOperationGeneral to3 = new TechOperationGeneral();
-        TechOperationGeneral to4 = new TechOperationGeneral();
+        String tOpsGen = "Набивка стельки," +
+                "Набивка верха," +
+                "Шнуровка," +
+                "ЗНК," +
+                "Намазка стельки," +
+                "Геленок," +
+                "ЗПК," +
+                "Выемка гвоздей," +
+                "Доводка на фене," +
+                "Обрезка фалд," +
+                "Разметка-Взьерошивание," +
+                "Протравка подошвы," +
+                "Промазка подошвы," +
+                "Приклейка подошвы";
+        int count = 1;
 
-        to1.setTitle("Приклейка");
-        to1.setCost(BigInteger.valueOf(22l));
-        to2.setTitle("Отклейка");
-        to2.setCost(BigInteger.valueOf(11l));
-        to3.setTitle("Затяжка");
-        to3.setCost(BigInteger.valueOf(80l));
-        to4.setTitle("Фен");
-        to4.setCost(BigInteger.valueOf(10l));
+        String[] res = tOpsGen.split(",");
+        for (String str : res) {
+            TechOperationGeneral tog = new TechOperationGeneral(str, BigInteger.valueOf(13l));
+            Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(tog);
+        }
 
-        Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to1);
-        Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to2);
-        Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to3);
-        Factory.getInstance().getTechOperationGeneralDAO().addTechOperation(to4);
+        tOpsGen = "Набивка стельки," +
+                "Набивка верха," +
+                "ЗНК," +
+                "Намазка стельки," +
+                "Геленок," +
+                "ЗПК," +
+                "Выемка гвоздей," +
+                "Доводка на фене," +
+                "Обрезка фалд," +
+                "Разметка-Взьерошивание," +
+                "Промазка подошвы," +
+                "Приклейка подошвы";
+        count = 1;
+        res = tOpsGen.split(",");
+        for (String str : res) {
+
+            TechOperationGeneral tog = Factory.getInstance().getTechOperationGeneralDAO().getTOGByTitle(str);
+            TechRoute tr = new TechRoute(2, "857", tog, ++count);
+           // tog.addTr(tr);
+            Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
+        }
+        ArrayList<String> ops = new ArrayList<>();
+        ops.add("");
+        tOpsGen = "Набивка стельки," +
+                "Набивка верха," +
+                "ЗНК," +
+                "Намазка стельки," +
+                "Геленок," +
+                "ЗПК," +
+                "Выемка гвоздей," +
+                "Обрезка фалд," +
+                "Разметка-Взьерошивание," +
+                "Промазка подошвы," +
+                "Приклейка подошвы";
+        count = 1;
+        res = tOpsGen.split(",");
+        for (String str : res) {
+
+            TechOperationGeneral tog = Factory.getInstance().getTechOperationGeneralDAO().getTOGByTitle(str);
+            TechRoute tr = new TechRoute(1, "444 ", tog, ++count);
+            //tog.addTr(tr);
+            Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
+
+        }
+
+       /* TechRoute tr = new TechRoute();
+        tOpsGen = "Набивка стельки," +
+                "Набивка верха," +
+                "ЗНК," +
+                "Намазка стельки," +
+                "Геленок," +
+                "ЗПК," +
+                "Выемка гвоздей," +
+                "Доводка на фене," +
+                "Обрезка фалд," +
+                "Разметка-Взьерошивание," +
+                "Промазка подошвы," +
+                "Приклейка подошвы";
 
 
-
+        tr.setModelArt("857");
+        tr.setOpsList(tOpsGen);
+        Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
+*/
         DBfillerStatus = true;
         System.out.println("DB filling proccess is done " + DBfillerStatus);
 

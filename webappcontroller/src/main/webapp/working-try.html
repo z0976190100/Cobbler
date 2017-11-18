@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <link href="css/working-try.css" rel="stylesheet"/>
+    <script src="js/working-try1.js"></script>
     <title>Title</title>
 </head>
 <body>
+<header>
+    <div>
 
+    </div>
+
+</header>
+<main>
+    <div id="tech-route-div">
+        <div id="model-input-div">
+            <form name="model-input" class="model-input" autocomplete="off">
+                <input type="text" id="m1">
+                <input type="button" onclick="dataRequest.getTechRouteByModel()" id="model-input-submit" value="Найти">
+            </form>
+        </div>
+        <span>
+            <form id="tech-route">
+        <ul>
+            <li><input id="operation" name="operation"
+                       type="checkbox">
+                <label for="operation">operation title</label>
+            </li>
+        </ul>
+    </form>
+       </span>
+    </div>
+</main>
+<footer>
+
+</footer>
+<script id="tech-route-template" type="text/x-handlebars-template">
+    <form {{routeFormId}}>
+        <ul>
+           {{ #li}}{{inputBody}} {{labelBody}}{{/li}}
+        </ul>
+    </form>
+</script>
 </body>
 </html>
