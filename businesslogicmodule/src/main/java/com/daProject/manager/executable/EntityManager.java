@@ -19,7 +19,7 @@ public class EntityManager {
 
         if (DBfillerStatus) return DBfillerStatus;
 
-        String tOpsGen = "Набивка стельки," +
+        /*String tOpsGen = "Набивка стельки," +
                 "Набивка верха," +
                 "Шнуровка," +
                 "ЗНК," +
@@ -85,8 +85,9 @@ public class EntityManager {
             Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
 
         }
-
-       /* TechRoute tr = new TechRoute();
+*/
+        String tOpsGen;
+        TechRoute tr = new TechRoute();
         tOpsGen = "Набивка стельки," +
                 "Набивка верха," +
                 "ЗНК," +
@@ -104,7 +105,7 @@ public class EntityManager {
         tr.setModelArt("857");
         tr.setOpsList(tOpsGen);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
-*/
+
         DBfillerStatus = true;
         System.out.println("DB filling proccess is done " + DBfillerStatus);
 

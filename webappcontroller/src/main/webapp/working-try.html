@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <link href="css/working-try.css" rel="stylesheet"/>
-    <script src="js/working-try1.js"></script>
+    <script src="js/handlebars-v4.0.11.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -15,6 +15,15 @@
 
 </header>
 <main>
+    <script id="tech-route-template" type="text/x-handlebars-template">
+        <form {{routeFormId}}>
+            <ul>
+                {{#each listLines}}
+                {{{inputLabelBody}}}{{/each}}
+            </ul>
+        </form>
+        <input type="button" value="next" />
+    </script>
     <div id="tech-route-div">
         <div id="model-input-div">
             <form name="model-input" class="model-input" autocomplete="off">
@@ -23,26 +32,14 @@
             </form>
         </div>
         <span>
-            <form id="tech-route">
-        <ul>
-            <li><input id="operation" name="operation"
-                       type="checkbox">
-                <label for="operation">operation title</label>
-            </li>
-        </ul>
-    </form>
+            <form id="tech-route"></form>
        </span>
     </div>
 </main>
 <footer>
 
 </footer>
-<script id="tech-route-template" type="text/x-handlebars-template">
-    <form {{routeFormId}}>
-        <ul>
-           {{ #li}}{{inputBody}} {{labelBody}}{{/li}}
-        </ul>
-    </form>
-</script>
+
+<script src="js/working-try1.js"></script>
 </body>
 </html>
