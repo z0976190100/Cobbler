@@ -3,37 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <link href="css/working-try.css" rel="stylesheet"/>
+    <link href="css/working-try.css" rel="stylesheet" type="text/css"/>
     <script src="js/handlebars-v4.0.11.js"></script>
     <title>Title</title>
 </head>
 <body>
+<div class="container-screen"></div>
 <header>
-    <div>
-
-    </div>
+    <div></div>
 
 </header>
 <main>
     <script id="tech-route-template" type="text/x-handlebars-template">
-        <form {{routeFormId}}>
+        <td id="td">
+            <div id="tech-route-div">
+                <p>Наряд No:</p>
+                <p>Дата:</p>
+                <p>Время открытия:</p>
+                <p>Открыл:</p>
+                <p>Модель: {{modelArt}}</p>
+                <span>
+            <form {{modelArt}}>
             <ul>
                 {{#each listLines}}
                 {{{inputLabelBody}}}{{/each}}
             </ul>
         </form>
-        <input type="button" value="next" />
-    </script>
-    <div id="tech-route-div">
-        <div id="model-input-div">
-            <form name="model-input" class="model-input" autocomplete="off">
-                <input type="text" id="m1">
-                <input type="button" onclick="dataRequest.getTechRouteByModel()" id="model-input-submit" value="Найти">
-            </form>
-        </div>
-        <span>
-            <form id="tech-route"></form>
+        <input type="button" onclick="dataRequest.techRouteCommitment()" value="Закрыть"/>
        </span>
+            </div>
+        </td>
+    </script>
+    <div class="content-holder">
+        <table>
+            <tr id="input-model">
+                <div id="model-input-div">
+                    <p>Введите артикул модели<br/>для получения наряда:</p>
+                    <form name="model-input" class="model-input" autocomplete="off">
+                        <input type="text" id="m1">
+                        <input type="button" onclick="dataRequest.getTechRouteByModel()" id="model-input-submit"
+                               value="Найти">
+                    </form>
+                </div>
+            </tr>
+            <tr id="tech-route"> </tr>
+        </table>
     </div>
 </main>
 <footer>

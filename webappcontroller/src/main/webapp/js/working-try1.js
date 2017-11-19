@@ -1,10 +1,12 @@
 var techRouteHandlebarsContext = {
-    routeFormId: "tech-route" + 857,
+    modelArt: "",
     listLines: []
 
 }
 
-var
+var operationRegister = [];
+
+var tableCellId = 1;
 
 var dataRequest = {
     getTechRouteByModel: function () {
@@ -25,10 +27,30 @@ var dataRequest = {
 
     },
     operationCheked: function (event) {
-console.log(event.target.id);
-var ev = "#" + event.target.id;
-$(ev).prop("checked", true);
-$(ev).prop("disabled",true);
+        console.log(event.target.id);
+        var ev = "#" + event.target.id;
+        $(ev).prop("checked", true);
+        $(ev).prop("disabled", true);
+        operationRegister.push(ev);
+    },
+
+    techRouteCommitment: function(){
+        console.log(operationRegister);
+        //dataRequest.techRouteFinalize(operationRegister);
+    },
+
+    techRouteFinalize: function (opReg) {
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "techRouteCommit", operationRegister: opReg},
+            success: function (data) {
+                // activating input field for next model input
+
+            }
+
+        });
     }
 }
 
@@ -51,27 +73,28 @@ var responseHandler = {
 
         var respPieces = response.split(",");
         var opcounter = 1;
-        for( var i = 0; i< respPieces.length ; i++) {
-            var temp = article + opcounter;
+        for (var i = 0; i < respPieces.length; i++) {
+            var temp = tableCellId + article + opcounter ;
+            techRouteHandlebarsContext.modelArt = article;
             techRouteHandlebarsContext.listLines.push({
                 inputLabelBody:
-                    "<input onclick =\"dataRequest.operationCheked(event)\" id=\"" + temp + "\" type=\"checkbox\">" +
-                    "<label id=\"" + temp +"\" for = \"" + temp + "\" onclick =\"dataRequest.operationCheked(event)\">"    //
-                    + respPieces[i] + "</label><br>"});
+                "<input onclick =\"dataRequest.operationCheked(event)\" id=\"" + temp + "\" type=\"checkbox\">" +
+                "<label id=\"" + temp + "\" for = \"" + temp + "\" onclick =\"dataRequest.operationCheked(event)\">"    //
+                + respPieces[i] + "</label><br>"
+            });
             opcounter++;
             console.log(techRouteHandlebarsContext.listLines)
         }
-        gogo();
+        gogoHandlebars();
         techRouteHandlebarsContext.listLines = [];
     }
 
 }
 
 
+var gogoHandlebars = function () {
 
-
-var gogo = function () {
-
+tableCellId ++;
 
     var templToCompile = document.getElementById("tech-route-template").innerHTML;
 
