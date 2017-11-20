@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: relative;
 
 }
@@ -74,7 +74,7 @@ a:hover, a:focus {
 
 .login-screen:before {
     content: "";
-    background: rgba(0,0,0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -110,17 +110,14 @@ a:hover, a:focus {
 }
 
 .login-form .input-group .input-group-addon:hover {
-    background: #c0c0c0;
+    border-color: #6600cc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(24, 204, 162, 0.6);
+    outline: 0 none;
 
 }
 
 .login-form .input-group .input-group-addon .glyphicon {
     color: #6600cc;
-}
-
-i:hover {
-    color: #7700cc;
-    cursor: hand;
 }
 
 .login-form .input-group .form-control::-moz-placeholder {
@@ -151,8 +148,8 @@ i:hover {
 
 #tech-route {
     display: inline-block;
+    color: #3c3c3c;
 }
-
 
 /*html,
 body {
@@ -170,38 +167,102 @@ body {
     /*opacity:0.2;*/
 }
 
-figure{
-    margin:0;
-    transform:translate(-50%,-50%) rotate(0deg) scale(1.4,1.4);
-    position:absolute;
-    left:50%;
-    top:50%;
-    border-radius:150px;
-    box-sizing:border-box;
-    animation:rotation 20s infinite linear;}
-
-figure div:after{content:"";width:20px;height:20px;border:1px solid #fff;box-sizing:border-box;position:absolute;left:20px;top:20px;animation:shuffle 2s infinite;}
-
-figure div:nth-child(1){transform:rotate(0deg)}
-figure div:nth-child(1):after{animation-delay:-0.5s;}
-figure div:nth-child(2){transform:rotate(45deg)}
-figure div:nth-child(2):after{animation-delay:-1s;}
-figure div:nth-child(3){transform:rotate(90deg)}
-figure div:nth-child(3):after{animation-delay:-1.5s;}
-figure div:nth-child(4){transform:rotate(135deg)}
-figure div:nth-child(4):after{animation-delay:-2s;}
-figure div:nth-child(5){transform:rotate(180deg)}
-figure div:nth-child(5):after{animation-delay:-2.5s;}
-figure div:nth-child(6){transform:rotate(225deg)}
-figure div:nth-child(6):after{animation-delay:-3s;}
-figure div:nth-child(7){transform:rotate(270deg)}
-figure div:nth-child(7):after{animation-delay:-3.5s;}
-figure div:nth-child(8){transform:rotate(315deg)}
-figure div:nth-child(8):after{animation-delay:-4s;}
-
-@keyframes rotation{
-    100%{transform:translate(-50%,-50%) rotate(-360deg) scale(1.4,1.4);}
+figure {
+    margin: 0;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.4, 1.4);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 150px;
+    box-sizing: border-box;
+    animation: rotation 20s infinite linear;
 }
-@keyframes shuffle{
-    50%{transform:scale(0.4,0.4) rotate(-90deg);border-radius:50%;}
+
+figure div:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    animation: shuffle 2s infinite;
+}
+
+figure div:nth-child(1) {
+    transform: rotate(0deg)
+}
+
+figure div:nth-child(1):after {
+    animation-delay: -0.5s;
+}
+
+figure div:nth-child(2) {
+    transform: rotate(45deg)
+}
+
+figure div:nth-child(2):after {
+    animation-delay: -1s;
+}
+
+figure div:nth-child(3) {
+    transform: rotate(90deg)
+}
+
+figure div:nth-child(3):after {
+    animation-delay: -1.5s;
+}
+
+figure div:nth-child(4) {
+    transform: rotate(135deg)
+}
+
+figure div:nth-child(4):after {
+    animation-delay: -2s;
+}
+
+figure div:nth-child(5) {
+    transform: rotate(180deg)
+}
+
+figure div:nth-child(5):after {
+    animation-delay: -2.5s;
+}
+
+figure div:nth-child(6) {
+    transform: rotate(225deg)
+}
+
+figure div:nth-child(6):after {
+    animation-delay: -3s;
+}
+
+figure div:nth-child(7) {
+    transform: rotate(270deg)
+}
+
+figure div:nth-child(7):after {
+    animation-delay: -3.5s;
+}
+
+figure div:nth-child(8) {
+    transform: rotate(315deg)
+}
+
+figure div:nth-child(8):after {
+    animation-delay: -4s;
+}
+
+@keyframes rotation {
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg) scale(1.4, 1.4);
+    }
+}
+
+@keyframes shuffle {
+    50% {
+        transform: scale(0.4, 0.4) rotate(-90deg);
+        border-radius: 50%;
+    }
 }

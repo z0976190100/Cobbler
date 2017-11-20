@@ -87,6 +87,25 @@ public class EntityManager {
 */
         String tOpsGen;
         TechRoute tr = new TechRoute();
+        TechRoute tr2 = new TechRoute();
+        tOpsGen = "Набивка стельки," +
+                "Набивка верха," +
+                "ЗНК," +
+                "Намазка стельки," +
+                "Геленок," +
+                "ЗПК," +
+                "Выемка гвоздей," +
+                "Доводка на фене," +
+                "Обрезка фалд," +
+                "Разметка," +
+                "Взьерошивание," +
+                "Промазка подошвы," +
+                "Приклейка подошвы";
+
+
+        tr.setModelArt("857");
+        tr.setOpsList(tOpsGen);
+
         tOpsGen = "Набивка стельки," +
                 "Набивка верха," +
                 "ЗНК," +
@@ -99,11 +118,10 @@ public class EntityManager {
                 "Разметка-Взьерошивание," +
                 "Промазка подошвы," +
                 "Приклейка подошвы";
-
-
-        tr.setModelArt("857");
-        tr.setOpsList(tOpsGen);
+        tr2.setModelArt("444");
+        tr2.setOpsList(tOpsGen);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
+        Factory.getInstance().getTechRouteDAO().saveTechRoute(tr2);
 
         roleIdentifier = new Cookie("roleIdentifier", "none");
 

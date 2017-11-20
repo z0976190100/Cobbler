@@ -1,4 +1,14 @@
+$(function () {
+    $(".glyphicon").on("mouseover", function () {
+        $(".glyphicon").css("color", "white");
+        $(".glyphicon").css("cursor", "hand");
+    });
 
+    $(".glyphicon").mouseleave( function () {
+        $(".glyphicon").css("color", "#6600cc");
+    });
+
+});
 
 
 
@@ -94,7 +104,7 @@ var responseHandler = {
             techRouteHandlebarsContext.listLines.push({
                 inputLabelBody:
                 "<input onclick =\"dataRequest.operationCheked(event)\" id=\"" + temp + "\" type=\"checkbox\">" +
-                "<label id=\"" + temp + "\" for = \"" + temp + "\" onclick =\"dataRequest.operationCheked(event)\">"    //
+                "<label style='color: #3c3c3c;' id=\"" + temp + "\" for = \"" + temp + "\" onclick =\"dataRequest.operationCheked(event)\">"    //
                 + respPieces[i] + "</label><br>"
             });
             opcounter++;
