@@ -1,6 +1,8 @@
 
 
 
+
+
 var techRouteHandlebarsContext = {
     modelArt: "",
     listLines: []
@@ -14,7 +16,11 @@ var tableCellId = 1;
 var dataRequest = {
     getTechRouteByModel: function () {
         var article = $("#m1").val();
-        document.cookie = "username=admin";
+       // document.cookie = "username=admin";
+        $(document).ajaxStart(function(){
+            $("#loader").css("display", "block");
+            $("html body").css("background", "#6600cc")
+        });
         console.log(article);
         $.ajax({
             type: "POST",
@@ -23,6 +29,10 @@ var dataRequest = {
             data: {requestType: "getTechRouteByModel", article: article},
             cookies: {foo: "modelSearch"},
             success: function (data) {
+                $(document).ajaxComplete(function(){
+                    $("#loader").css("display", "none");
+                    $("html body").css("background", "rgba(0,0,0,0)")
+                });
                 // inserting recieved data into DOM
                 console.log(data.operation_list);
                 responseHandler.responseParser(data.operation_list, article)

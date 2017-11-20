@@ -68,7 +68,6 @@ public class APIHandlerServlet extends HttpServlet {
         JSONStreamAware response = JSON.emptyJSON;
 
         HttpSession session = req.getSession();
-       System.out.println("______________________"+session.getId()+ "______________________");
 
        Cookie[] cookies = req.getCookies();
         for (Cookie cook : cookies

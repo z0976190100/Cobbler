@@ -1,35 +1,207 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
-
-#accordion2, #accordion {
-    width: 333px;
-    display: inline-block;
+@font-face {
+    font-family: Roboto;
+    src: url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100);
 }
 
-#first-accordion, #second-accordion {
-    width: 333px;
-    height: 500px;
-    display: inline-block;
-    overflow: scroll;
+@font-face {
+    font-family: Raleway;
+    src: url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Roboto',sans-serif;
+    position: relative;
 
 }
 
-.mcard {
+.in-page {
+    min-height: 520px;
+}
+
+.main {
+    position: relative;
+}
+
+a {
+    color: #6600cc;
+}
+
+a:hover, a:focus {
+    color: #6600cc;
+}
+
+.btn-cyan {
+    background-color: #6600cc;
+    color: #fff;
+}
+
+.btn-cyan:hover {
+    color: #fff;
+    opacity: 0.9;
+}
+
+.form-control:focus {
+    border-color: #6600cc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(24, 204, 162, 0.6);
+    outline: 0 none;
+}
+
+.min-height {
+    min-height: 380px;
+}
+
+.login-screen {
+    background: url("ShoemakerWallpaperGallery1024x677.jpg") no-repeat fixed center;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
     position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.7;
 }
 
-#first-header-div {
-    width: 333px;
+.login-screen:before {
+    content: "";
+    background: rgba(0,0,0, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
 
-    background-color: yellowgreen;
+.login-center {
+    text-align: left;
+}
+
+.login {
+    width: 320px;
+    color: #fff;
+}
+
+.login .login-form {
+    text-align: left;
+}
+
+.login label {
+    color: #fff;
+}
+
+.login-form .input-group .form-control {
+    background: none;
+    height: 44px;
+    color: #ddd;
+}
+
+.login-form .input-group .input-group-addon {
+    background: none;
+}
+
+.login-form .input-group .input-group-addon:hover {
+    background: #c0c0c0;
 
 }
 
-header {
-    height: 30px;
-    width: auto;
+.login-form .input-group .input-group-addon .glyphicon {
+    color: #6600cc;
 }
 
-.header-divs {
-    display:inline-block;
+i:hover {
+    color: #7700cc;
+    cursor: hand;
 }
 
+.login-form .input-group .form-control::-moz-placeholder {
+    color: #fff;
+    opacity: 0.3;
+}
+
+.login .sign-btn input.btn {
+    background: #6600cc;
+    border-color: #6600cc;
+    color: #fff;
+    width: 180px;
+}
+
+.login .sign-btn a {
+    text-decoration: none;
+}
+
+.login .checkbox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login .forgot {
+    display: inline-block;
+    margin: 20px 0;
+}
+
+#tech-route {
+    display: inline-block;
+}
+
+
+/*html,
+body {
+    background-color: #404456;
+}*/
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -2.7em;
+    margin-left: -2.7em;
+    width: 5.4em;
+    height: 5.4em;
+    display: none;
+    /*opacity:0.2;*/
+}
+
+figure{
+    margin:0;
+    transform:translate(-50%,-50%) rotate(0deg) scale(1.4,1.4);
+    position:absolute;
+    left:50%;
+    top:50%;
+    border-radius:150px;
+    box-sizing:border-box;
+    animation:rotation 20s infinite linear;}
+
+figure div:after{content:"";width:20px;height:20px;border:1px solid #fff;box-sizing:border-box;position:absolute;left:20px;top:20px;animation:shuffle 2s infinite;}
+
+figure div:nth-child(1){transform:rotate(0deg)}
+figure div:nth-child(1):after{animation-delay:-0.5s;}
+figure div:nth-child(2){transform:rotate(45deg)}
+figure div:nth-child(2):after{animation-delay:-1s;}
+figure div:nth-child(3){transform:rotate(90deg)}
+figure div:nth-child(3):after{animation-delay:-1.5s;}
+figure div:nth-child(4){transform:rotate(135deg)}
+figure div:nth-child(4):after{animation-delay:-2s;}
+figure div:nth-child(5){transform:rotate(180deg)}
+figure div:nth-child(5):after{animation-delay:-2.5s;}
+figure div:nth-child(6){transform:rotate(225deg)}
+figure div:nth-child(6):after{animation-delay:-3s;}
+figure div:nth-child(7){transform:rotate(270deg)}
+figure div:nth-child(7):after{animation-delay:-3.5s;}
+figure div:nth-child(8){transform:rotate(315deg)}
+figure div:nth-child(8):after{animation-delay:-4s;}
+
+@keyframes rotation{
+    100%{transform:translate(-50%,-50%) rotate(-360deg) scale(1.4,1.4);}
+}
+@keyframes shuffle{
+    50%{transform:scale(0.4,0.4) rotate(-90deg);border-radius:50%;}
+}
