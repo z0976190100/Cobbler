@@ -28,6 +28,9 @@ public class DminHandler extends APIHandlerServlet.APIRequestHandler {
                     responseJSON.put(key, gotcha.get(key));
                 }
                 break;
+            case "destroyUser":
+                dmin.destroyUser(Long.parseLong(request.getParameter("userIdTD")));
+                return null;
             default:
                 return null;
         }

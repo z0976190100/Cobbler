@@ -13,23 +13,32 @@ import java.util.Map;
 
 public class DminService {
 
-    public Map<String, String> getAllUsers(){
+    protected UserDAOImpl user = new UserDAOImpl();
 
-        UserDAOImpl user = new UserDAOImpl();
+    public Map<String, String> getAllUsers() {
+
         List<User> alUsers = new ArrayList<>();
         Map<String, String> allUsers = new HashMap<>();
 
         try {
             alUsers = user.getAllUsers();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        for (User userr: alUsers) {
+        for (User userr : alUsers) {
             allUsers.put(String.valueOf(userr.getId()), userr.getSurName());
         }
 
         return allUsers;
+    }
+
+
+    public void destroyUser(long userIdTD) {
+
+        User userTD = user.getUserById(userIdTD);
+        user.deleteUser(userTD);
+
     }
 
 }

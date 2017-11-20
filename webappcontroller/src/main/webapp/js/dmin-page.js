@@ -1,9 +1,6 @@
-
 var HandlebarsContext = {
-   userLine: [
-       {userId: ""},
-       {userSurname: ""}
-    ]
+    userLine: []
+
 }
 
 var dminActions = {
@@ -14,14 +11,33 @@ var dminActions = {
             dataType: "json",
             data: {requestType: "getAllUsers"},
             success: function (data) {
-                console.log(data)
+                HandlebarsContext = {
+                    userLine: []
+                }
+                for (var key in data) {
+                    if (key !== "requestProcessingTime")
+                        HandlebarsContext.userLine.push({userId: key, userSurname: data[key]});
+                    console.log(HandlebarsContext.userLine);
+                }
+                gogoHandlebars();
             }
-
-
         });
-
+    },
+    destroyUser: function (event) {
+        var andNowUserIdToDestroyIiiiis = event.target.name;
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
+            complete: function () {
+                document.getElementById("user-table-div").innerHTML = "";
+                dminActions.getAllUsers();
+            }
+        });
     }
 }
+
 
 var responseParser = function (json) {
 
@@ -36,5 +52,6 @@ var gogoHandlebars = function () {
 
     var insertingData = templCompiled(HandlebarsContext);
 
-    document.getElementById("tech-route").innerHTML += insertingData;
+
+    document.getElementById("user-table-div").innerHTML += insertingData;
 }

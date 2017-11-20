@@ -38,6 +38,7 @@ public class APIHandlerServlet extends HttpServlet {
         map.put("registration", RegistrationServlet.getInstance());
         map.put("getTechRouteByModel", TechRouteServlet.getInstance());
         map.put("getAllUsers", DminHandler.getInstance());
+        map.put("destroyUser", DminHandler.getInstance());
 
         apiRequestHandlers = Collections.unmodifiableMap(map);
     }
