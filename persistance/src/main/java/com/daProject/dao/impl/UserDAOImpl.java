@@ -8,9 +8,11 @@ import org.hibernate.query.Query;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
-    public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
         @Override
         public void addUser(User user) throws SQLException {
             Session session = null;
@@ -96,6 +98,17 @@ import java.sql.SQLException;
             return null;
         }
 
+    @Override
+    public List<User> getAllUsers() throws SQLException {
+        List<User> allUsers = new ArrayList<>();
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("from User");
+            allUsers = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allUsers;
     }
+}
 
 

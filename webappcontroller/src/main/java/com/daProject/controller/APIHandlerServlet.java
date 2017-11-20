@@ -5,9 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONStreamAware;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.SQLException;
@@ -17,12 +15,12 @@ import java.util.Map;
 
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
 import static com.daProject.manager.executable.EntityManager.dataBaseFiller;
-
+import static com.daProject.manager.executable.EntityManager.roleIdentifier;
 
 /**
  * Created by Nataliya on 28.02.2017.
  */
-public class APIHandlerServlet extends HttpServlet{
+public class APIHandlerServlet extends HttpServlet {
     public abstract static class APIRequestHandler {
 
         protected abstract JSONStreamAware processRequest(HttpServletRequest request) throws Exception;
@@ -39,8 +37,8 @@ public class APIHandlerServlet extends HttpServlet{
         map.put("login", LoginServlet.getInstance());
         map.put("registration", RegistrationServlet.getInstance());
         map.put("getTechRouteByModel", TechRouteServlet.getInstance());
-        /*map.put("image", ImageServlet.getInstance());
-        map.put("comment", CommentServlet.getInstance());*/
+        map.put("getAllUsers", DminHandler.getInstance());
+
         apiRequestHandlers = Collections.unmodifiableMap(map);
     }
 
@@ -54,6 +52,7 @@ public class APIHandlerServlet extends HttpServlet{
         process(req, resp);
     }
 
+
     public static Map<String, APIRequestHandler> getApiRequestHandlers() {
         return apiRequestHandlers;
     }
@@ -66,6 +65,17 @@ public class APIHandlerServlet extends HttpServlet{
         resp.setDateHeader("Expires", 0);
 
         JSONStreamAware response = JSON.emptyJSON;
+
+        HttpSession session = req.getSession();
+       System.out.println("______________________"+session.getId()+ "______________________");
+
+       Cookie[] cookies = req.getCookies();
+        for (Cookie cook : cookies
+             ) {
+            System.out.println(cook.getName());
+        }
+
+
 
         try {
             dataBaseFiller();
@@ -98,6 +108,7 @@ public class APIHandlerServlet extends HttpServlet{
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            resp.addCookie(roleIdentifier);
             resp.setContentType("text/plain; charset=UTF-8");
             try (Writer writer = resp.getWriter()) {
                 response.writeJSONString(writer);//.append((CharSequence)((JSONObject) response).get("operation_list")));

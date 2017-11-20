@@ -45,9 +45,15 @@
                     <div class="front signin_form">  <!--front-->
                         <p>Войти</p>
                         <form class="login-form">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="+38**********">
+                            <div class="form-group">                   <!-- add names to inputs -->
+                                <div class="input-group">              <!-- login input -->
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="+380*********"
+                                           value="+380"
+                                           required
+                                           autofocus
+                                    onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"/>
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-phone"></i>
                                       </span>
@@ -55,18 +61,22 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Пароль">
+                                    <input id="password-input-field"
+                                            type="password"
+                                           class="form-control"
+                                           placeholder="Пароль"
+                                           required />
                                     <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-lock"></i>
                                       </span>
                                 </div>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox">Запомнить</label>
+                                <label ><input id="remeber-me-checkbox" type="checkbox" disabled >Запомнить</label>
                             </div>
 
                             <div class="form-group sign-btn">
-                                <input type="button" onclick="main.log_in()" class="btn" value="Начать">
+                                <input type="submit" onclick="main.log_in()" class="btn" value="Начать" disabled>  <!-- handle submit event, preventDefault, add my action-->
                                 <p><a href="#" class="forgot">Проблемы с входом? Жми.</a></p>
                                 <p><strong>В первый раз?</strong><br><input type="button"  id="flip-btn" class="btn btn-cyan signup signup_link" value="Регистрация"></p>
                             </div>

@@ -1,3 +1,6 @@
+
+
+
 var techRouteHandlebarsContext = {
     modelArt: "",
     listLines: []
@@ -11,12 +14,14 @@ var tableCellId = 1;
 var dataRequest = {
     getTechRouteByModel: function () {
         var article = $("#m1").val();
+        document.cookie = "username=admin";
         console.log(article);
         $.ajax({
             type: "POST",
             url: "/testmaven",
             dataType: "json",
             data: {requestType: "getTechRouteByModel", article: article},
+            cookies: {foo: "modelSearch"},
             success: function (data) {
                 // inserting recieved data into DOM
                 console.log(data.operation_list);

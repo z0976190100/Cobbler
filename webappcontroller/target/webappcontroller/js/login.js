@@ -4,8 +4,14 @@ $(function () {
     });
 });
 
+$(function () {
+    $("#password-input-field").on("focus", function () {
+        $("#remeber-me-checkbox").prop("disabled",false);
+    })
+    
+})
 
-$(document).ready(function () {
+$(function () {
     $("#flip-btn").click(function () {
 
         $(".signin_form").css('opacity', '0');

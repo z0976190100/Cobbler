@@ -2,16 +2,15 @@ package com.daProject.manager.executable;
 
 //import com.daProject.dao.entity.TOpsTRouts;
 
-import com.daProject.dao.entity.TechOperationGeneral;
-
 import com.daProject.dao.entity.TechRoute;
 import com.daProject.dao.hibernateFactory.Factory;
 
-import java.math.BigInteger;
+import javax.servlet.http.Cookie;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class EntityManager {
+
+    public static Cookie roleIdentifier;
 
     static boolean DBfillerStatus = false;
 
@@ -105,6 +104,8 @@ public class EntityManager {
         tr.setModelArt("857");
         tr.setOpsList(tOpsGen);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
+
+        roleIdentifier = new Cookie("roleIdentifier", "none");
 
         DBfillerStatus = true;
         System.out.println("DB filling proccess is done " + DBfillerStatus);
