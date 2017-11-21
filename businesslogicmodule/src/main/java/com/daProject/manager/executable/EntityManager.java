@@ -88,6 +88,8 @@ public class EntityManager {
         String tOpsGen;
         TechRoute tr = new TechRoute();
         TechRoute tr2 = new TechRoute();
+        TechRoute tr3 = new TechRoute();
+        TechRoute tr4 = new TechRoute();
         tOpsGen = "Набивка стельки," +
                 "Набивка верха," +
                 "ЗНК," +
@@ -120,8 +122,14 @@ public class EntityManager {
                 "Приклейка подошвы";
         tr2.setModelArt("444");
         tr2.setOpsList(tOpsGen);
+        tr3.setModelArt("444-1");
+        tr3.setOpsList(tOpsGen);
+        tr4.setModelArt("488");
+        tr4.setOpsList(tOpsGen);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr2);
+        Factory.getInstance().getTechRouteDAO().saveTechRoute(tr3);
+        Factory.getInstance().getTechRouteDAO().saveTechRoute(tr4);
 
         roleIdentifier = new Cookie("roleIdentifier", "none");
 

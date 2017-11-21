@@ -13,9 +13,11 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
             integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
             crossorigin="anonymous"></script>
@@ -26,15 +28,23 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <!--<script src="./js/working-flow.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="./css/working-flow.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <title>Test-maven</title>
 </head>
 
 <body class="main">
+<script id="all-tech-route-select-template" type="text/x-handlebars-template">
+    {{#each techRoutsArticlesLine}}
+<option value="{{modelArt}}">{{modelArt}}</option>
+    {{/each}}
+    </script>
 <script id="tech-route-template" type="text/x-handlebars-template">
     <td id="td" style="width: 300px !important;">
         <div id="tech-route-div" style="width: 300px !important;" class="login-form input-group form-control">
@@ -72,18 +82,18 @@
             <div class="col-xs-1 col-md-offset-0">
                 <div class="login" id="card">
                     <div class="front signin_form">  <!--front-->
-                        <p>Input model article</p>
-                        <form class="login-form">
+                        <p>Выберите модель </p>
+                        <form class="login-form" onsubmit="dataRequest.getTechRouteByModel(event)">
                             <div class="form-group">                   <!-- add names to inputs -->
-                                <div class="input-group">              <!-- login input -->
-                                    <input id="m1"
-                                            type="text"
+                                <div id="m2" class="input-group">              <!-- login input -->
+                                    <input id="all-tech-route-select"
+                                           onfocus="dataRequest.getAllTechRoutsArticles()"
+                                           placeholder="Артикул"
                                            class="form-control"
-                                           placeholder="article"
-                                           required
-                                           autofocus
-                                           />
-                                    <span onclick="dataRequest.getTechRouteByModel()" id="model-input-submit" class="input-group-addon">
+                                    style="height: 44px;">
+                                    <span  id="model-input-submit"
+                                           onclick="dataRequest.getTechRouteByModel()"
+                                           class="input-group-addon">
                                           <i  class="glyphicon glyphicon-search"></i>
                                       </span>
                                 </div>
@@ -99,9 +109,9 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
 <script src="js/handlebars-v4.0.11.js"></script>
 <script src="js/working-try1.js"></script>
+
 </body>
 <!--
 <!DOCTYPE html>

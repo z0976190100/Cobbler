@@ -151,6 +151,10 @@ a:hover, a:focus {
     color: #3c3c3c;
 }
 
+#m22 {
+    position: fixed;
+}
+
 /*html,
 body {
     background-color: #404456;

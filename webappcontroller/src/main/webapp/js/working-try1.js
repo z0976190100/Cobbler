@@ -4,13 +4,11 @@ $(function () {
         $(".glyphicon").css("cursor", "hand");
     });
 
-    $(".glyphicon").mouseleave( function () {
+    $(".glyphicon").mouseleave(function () {
         $(".glyphicon").css("color", "#6600cc");
     });
 
 });
-
-
 
 
 var techRouteHandlebarsContext = {
@@ -24,28 +22,27 @@ var operationRegister = [];
 var tableCellId = 1;
 
 var dataRequest = {
-    getTechRouteByModel: function () {
-        var article = $("#m1").val();
-       // document.cookie = "username=admin";
-        $(document).ajaxStart(function(){
-            $("#loader").css("display", "block");
-            $("html body").css("background", "#6600cc")
-        });
+    getTechRouteByModel: function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var article = $("#all-tech-route-select").val();
+        // document.cookie = "username=admin";
+        $("#loader").css("display", "block");
+        $("html body").css("background", "#6600cc");
         console.log(article);
         $.ajax({
             type: "POST",
             url: "/testmaven",
             dataType: "json",
             data: {requestType: "getTechRouteByModel", article: article},
-            cookies: {foo: "modelSearch"},
             success: function (data) {
-                $(document).ajaxComplete(function(){
-                    $("#loader").css("display", "none");
-                    $("html body").css("background", "rgba(0,0,0,0)")
-                });
-                // inserting recieved data into DOM
-                console.log(data.operation_list);
-                responseHandler.responseParser(data.operation_list, article)
+                $("#loader").css("display", "none");
+                $("html body").css("background", "rgba(0,0,0,0)");
+                if (data != null) {
+                    // inserting recieved data into DOM
+                    console.log(data.operation_list);
+                    responseHandler.responseParser(data.operation_list, article);
+                }
             }
 
         });
@@ -59,7 +56,7 @@ var dataRequest = {
         operationRegister.push(ev);
     },
 
-    techRouteCommitment: function(){
+    techRouteCommitment: function () {
         console.log(operationRegister);
         //dataRequest.techRouteFinalize(operationRegister);
     },
@@ -76,6 +73,42 @@ var dataRequest = {
             }
 
         });
+    },
+
+    getAllTechRoutsArticles: function () {
+
+        $("#loader").css("display", "block");
+        $("html body").css("background", "#6600cc");
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "getAllTechRoutsArticles"},
+            success: function (data) {
+                $("#loader").css("display", "none");
+                $("html body").css("background", "rgba(0,0,0,0)");
+                var autocompleteArr = [];
+                var count = 0;
+                for (var key in data) {
+                    if (key !== "requestProcessingTime") {
+                        modelArtMap = data;
+                        autocompleteArr[count]=(data[key]);
+                        count++;
+                    }
+                    console.log(autocompleteArr);
+
+                   $(function () {
+
+                    $("#all-tech-route-select").autocomplete({
+                            source: autocompleteArr
+                        });
+                   })
+
+                    }
+                }
+
+        });
+
     }
 }
 
@@ -99,7 +132,7 @@ var responseHandler = {
         var respPieces = response.split(",");
         var opcounter = 1;
         for (var i = 0; i < respPieces.length; i++) {
-            var temp = tableCellId + article + opcounter ;
+            var temp = tableCellId + article + opcounter;
             techRouteHandlebarsContext.modelArt = article;
             techRouteHandlebarsContext.listLines.push({
                 inputLabelBody:
@@ -110,24 +143,47 @@ var responseHandler = {
             opcounter++;
             console.log(techRouteHandlebarsContext.listLines)
         }
-        gogoHandlebars();
+        gogoHandlebars("tech-route");
         techRouteHandlebarsContext.listLines = [];
+    },
+    responseParserAllTR: function (response) {
+
+
     }
 
 }
 
 
-var gogoHandlebars = function () {
+var gogoHandlebars = function (target) {
 
-tableCellId ++;
+    var handlebarsAct = function(target, templateId) {
 
-    var templToCompile = document.getElementById("tech-route-template").innerHTML;
 
-    console.log(templToCompile);
+        var templToCompile = document.getElementById(templateId).innerHTML;
 
-    var templCompiled = Handlebars.compile(templToCompile);
+        console.log(templToCompile);
 
-    var insertingData = templCompiled(techRouteHandlebarsContext);
+        var templCompiled = Handlebars.compile(templToCompile);
 
-    document.getElementById("tech-route").innerHTML += insertingData;
+        var insertingData = templCompiled(techRouteHandlebarsContext);
+
+        document.getElementById(target).innerHTML += insertingData;
+        console.log("Handelbars done!");
+    };
+
+    switch (target) {
+        case "tech-route":
+            tableCellId++;
+            templateId = "tech-route-template";
+            handlebarsAct(target, templateId);
+            break;
+        case "all-tech-route-select":
+            templateId = "all-tech-route-select-template";
+            handlebarsAct(target, templateId);
+            break;
+        default:
+            console.log("no hendelbars handler yep...");
+    };
+
+
 }

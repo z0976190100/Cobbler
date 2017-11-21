@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import javax.swing.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TechRouteDAOImpl implements TechRouteDAO {
@@ -41,4 +43,18 @@ public class TechRouteDAOImpl implements TechRouteDAO {
         }
         return tr.getOpsList();
     }
+
+
+    @Override
+    public List<TechRoute> getAllTechRoutsArticles() throws SQLException {
+        List<TechRoute> allArts = new ArrayList<>();
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("from TechRoute");
+            allArts = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allArts;
+    }
+
 }
