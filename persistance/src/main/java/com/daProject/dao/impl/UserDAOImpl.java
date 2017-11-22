@@ -11,92 +11,122 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.daProject.dao.entity.Errors.errorMessage;
+
+
 
 public class UserDAOImpl implements UserDAO {
-        @Override
-        public void addUser(User user) throws SQLException {
-            Session session = null;
-            try {
-                session = HibernateSessionFactory.getSessionFactory().openSession();
-                session.beginTransaction();
-                session.save(user);
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
-                //MUST be dan
-            }finally {
-                if (session != null & session.isOpen()){
-                    session.close();
-                }
+   // public static String errorMessage = "";
+
+    @Override
+    public void addUser(User user) throws SQLException {
+        Session session = null;
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
+            //MUST be dan
+        } finally {
+            if (session != null & session.isOpen()) {
+                session.close();
             }
         }
+    }
 
-        @Override
-        public void updateUser(User user) {
-            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                session.beginTransaction();
-                session.update(user);
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-                //MUST be dan
-            }
+    @Override
+    public void updateUser(User user) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
         }
+    }
 
 
-        @Override
-        public User getUserBySurame(String surname) {
-            User user = null;
-            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                Query query = session.createQuery("FROM User WHERE surName =:paramName");
-                query.setParameter("paramName", surname);
-                user = (User) query.uniqueResult();
-            } catch (Exception e) {
-                e.printStackTrace();
-                //MUST be dan
-            }
-            return user;
+    @Override
+    public User getUserBySurame(String surname) {
+        User user = null;
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM User WHERE surName =:paramName");
+            query.setParameter("paramName", surname);
+            user = (User) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
         }
+        return user;
+    }
 
-        public Long getUserIdByFirstName(String name) {
-            Long idUser = null;
-            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                Query query = session.createQuery("SELECT id FROM User WHERE firstName =:paramName");
-                query.setParameter("paramName", name);
-                idUser = (Long) query.uniqueResult();
-            } catch (Exception e) {
-                e.printStackTrace();
-                //MUST be dan
-            }
-            return idUser;
+    public Long getUserIdByFirstName(String name) {
+        Long idUser = null;
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("SELECT id FROM User WHERE firstName =:paramName");
+            query.setParameter("paramName", name);
+            idUser = (Long) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //MUST be dan
         }
-        public User getUserById(long id) {
-            User user = null;
-            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                Query query = session.createQuery("FROM User WHERE id =:paramId");
-                query.setParameter("paramId", id);
-                user = (User) query.uniqueResult();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return user;
-        }
+        return idUser;
+    }
 
-        @Override
-        public void deleteUser(User user) {
-            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                session.beginTransaction();
-                session.delete(user);
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public User getUserById(long id) {
+        User user = null;
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM User WHERE id =:paramId");
+            query.setParameter("paramId", id);
+            user = (User) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return user;
+    }
 
-        @Override
-        public Long getUserIdBySurname(String surname) throws SQLException {
-            return null;
+    @Override
+    public String getRoleByFlag(User user, String flag, String param) throws SQLException {
+        User userTD = null;
+        String hql;
+        switch (flag) {
+            case "phoneNumber":
+                errorMessage = "No such tel or user";
+                hql = "FROM User WHERE phoneNumber =:clue";
+                break;
+            default:
+                return null;
         }
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            Query query = session.createQuery(hql);
+            query.setParameter("clue", param);
+            userTD = (User) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(userTD.getRole()!= null) return userTD.getRole();
+
+        return errorMessage;
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Long getUserIdBySurname(String surname) throws SQLException {
+        return null;
+    }
 
     @Override
     public List<User> getAllUsers() throws SQLException {

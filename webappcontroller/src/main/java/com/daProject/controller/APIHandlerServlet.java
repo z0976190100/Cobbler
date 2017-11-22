@@ -1,5 +1,6 @@
 package com.daProject.controller;
 
+import com.daProject.controller.utils.EntityHandler;
 import com.daProject.controller.utils.JSON;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONStreamAware;
@@ -34,6 +35,7 @@ public class APIHandlerServlet extends HttpServlet {
     static {
         Map<String, APIRequestHandler> map = new HashMap<>();
 
+        map.put("dbInit", EntityHandler.getInstance());
         map.put("login", LoginServlet.getInstance());
         map.put("registration", RegistrationServlet.getInstance());
         map.put("getTechRouteByModel", TechRouteServlet.getInstance());
@@ -78,28 +80,25 @@ public class APIHandlerServlet extends HttpServlet {
 
 
 
-        try {
-            dataBaseFiller();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+
 
         try {
-
             long startTime = System.currentTimeMillis();
-
             String requestType = req.getParameter("requestType");
             System.out.println("get request");
+
             if (requestType == null) {
                 response = ERROR_INCORRECT_REQUEST;
                 return;
             }
 
             APIRequestHandler apiRequestHandler = getApiRequestHandlers().get(requestType);
+
             if (apiRequestHandler == null) {
                 response = ERROR_INCORRECT_REQUEST;
                 return ;
             }
+
             System.out.println("Get servlet process");
             response = apiRequestHandler.processRequest(req);
             if (response instanceof JSONObject) {

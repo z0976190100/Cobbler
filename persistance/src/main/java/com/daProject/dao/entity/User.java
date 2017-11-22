@@ -19,6 +19,7 @@ public class User {
     private String phoneNumber;
     private String password;
     private String employment;
+    private String role;
 
     private Set<ValiData> valiData = new HashSet<>();
 
@@ -77,6 +78,18 @@ public class User {
    @Column(name = "employment")
     public String getEmployment() { return employment; }
     public void setEmployment(String employment) { this.employment = employment; }
+
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+
 
 
     @Override
