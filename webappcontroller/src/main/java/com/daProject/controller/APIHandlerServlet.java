@@ -9,15 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
-import static com.daProject.manager.executable.EntityManager.dataBaseFiller;
-import static com.daProject.manager.executable.EntityManager.roleIdentifier;
-import static com.daProject.dao.entity.Errors.multiplayerCheck;
+
 /**
  * Created by Nataliya on 28.02.2017.
  */
@@ -36,7 +33,7 @@ public class APIHandlerServlet extends HttpServlet {
         Map<String, APIRequestHandler> map = new HashMap<>();
 
         map.put("dbInit", EntityHandler.getInstance());
-        map.put("auth", LoginServlet.getInstance());
+        map.put("auth", LoginHandler.getInstance());
         map.put("registration", RegistrationServlet.getInstance());
         map.put("getTechRouteByModel", TechRouteServlet.getInstance());
         map.put("getAllUsers", DminHandler.getInstance());

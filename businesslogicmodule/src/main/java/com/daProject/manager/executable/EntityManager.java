@@ -3,6 +3,7 @@ package com.daProject.manager.executable;
 //import com.daProject.dao.entity.TOpsTRouts;
 
 import com.daProject.dao.entity.TechRoute;
+import com.daProject.dao.entity.User;
 import com.daProject.dao.hibernateFactory.Factory;
 
 import javax.servlet.http.Cookie;
@@ -17,6 +18,13 @@ public class EntityManager {
     public static boolean dataBaseFiller() throws SQLException {
 
         if (DBfillerStatus) return DBfillerStatus;
+
+        User dmin = new User();
+        dmin.setPhoneNumber("+380976190100");
+        dmin.setPassword("zhst");
+        dmin.setRole("Сервис");
+
+        Factory.getInstance().getUserDAO().saveUser(dmin);
 
         /*String tOpsGen = "Набивка стельки," +
                 "Набивка верха," +

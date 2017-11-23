@@ -33,8 +33,8 @@ public class Main {
         valUser1.setUser(user1);
         valUser2.setUser(user1);
 
-        Factory.getInstance().getUserDAO().addUser(user1);
-        Factory.getInstance().getUserDAO().addUser(user2);
+        Factory.getInstance().getUserDAO().saveUser(user1);
+        Factory.getInstance().getUserDAO().saveUser(user2);
 
 
         Factory.getInstance().getValiDataDAO().addValiData(valUser1);

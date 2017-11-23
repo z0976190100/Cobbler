@@ -3,7 +3,6 @@ package com.daProject.manager.executable;
 import com.daProject.dao.entity.User;
 import com.daProject.dao.hibernateFactory.Factory;
 import com.daProject.dao.impl.UserDAOImpl;
-import netscape.javascript.JSObject;
 import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +51,7 @@ public class RegistrationManager {
             userToAct.setSurName(request.getParameter("surname"));
             userToAct.setEmployment(request.getParameter("employment"));
             userToAct.setRole(request.getParameter("role"));
-            Factory.getInstance().getUserDAO().addUser(userToAct);
+            Factory.getInstance().getUserDAO().saveUser(userToAct);
             registrationResponse.put("registration", "win");
         }
         return registrationResponse;

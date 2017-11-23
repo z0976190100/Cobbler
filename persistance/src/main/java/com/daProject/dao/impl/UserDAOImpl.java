@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
    // public static String errorMessage = "";
 
     @Override
-    public void addUser(User user) throws SQLException {
+    public void saveUser(User user) throws SQLException {
         Session session = null;
         try {
             session = HibernateSessionFactory.getSessionFactory().openSession();

@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface UserDAO {
-         void addUser(User user) throws SQLException;
+         void saveUser(User user) throws SQLException;
          void updateUser(User user) throws SQLException;
          User getUserByPhonenumber(String pn) throws SQLException;
          void deleteUser(User user) throws SQLException;
