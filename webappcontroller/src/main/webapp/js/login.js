@@ -1,4 +1,8 @@
 //database initialisation
+var currentUser;
+var currentRole;
+
+
 var loader = {
     on: function () {
         $(".loader").css("display", "block");
@@ -20,6 +24,12 @@ var main = {
                 case "secrets_are_equal":
                     main.errorMesage = "Ах! Повтор пароля не совпадает. Давай еще разок. И повнимательней!";
                     return false;
+                /*
+                                case "is_field_empty":
+                                    $(fieldId).css("border-color", "red");
+                                    alert("Поле не заполнено!");
+                                    return false;
+                */
             }
         }
         return true;
@@ -74,7 +84,7 @@ var main = {
                 if (data.registration == "win") {
                     console.log("registration win")
                     main.unflip();
-                    document.location.href = 'working-flow.html';
+                    alert("Учетная запись создана. Войдите с новыми учетными данными.");
                     return;
                 }
                 alert("Такие уже есть, еще разик");
@@ -85,29 +95,25 @@ var main = {
 
 
     log_in: function () {
-        document.location.href = 'working-try.html';
-        /*var log = document.getElementById("login").value;
-        var pass = document.getElementById("password").value;
-        var $phonenumber = $("#phonenumber_input").value;
-        var $secret = $("#secret_input").value;
-
+        var secret = $("#secret-input-auth").val();
+        var phonenumber = $("#login-input-auth").val();
         $.ajax({
             type: "POST",
             url: "/test-maven",
             dataType: "json",
-            data: {requestType: "login", login: log, password: pass},//!!!!!!!!!!!!!
+            data: {requestType: "auth", phonenumber: log, secret: secret},//!!!!!!!!!!!!!
             success: function (data) {
                 if (data.name == "error")
-                    document.location.href = 'errorPage.html';
+                    alert('Неверные данные');
                 else
-                    document.location.href = 'User_cabinet.html';
-                window.onload = function () {
-                    document.getElementById("name").innerHTML = data.name;
-                    document.getElementById("index").innerHTML = data.indexNumber;
-                }
-
+                    main.changeScene("#second", "#first");
+                currentUser = data.firstName;
+                currentRole = data.role;
+                document.cookie = "user=" + currentUser;
+                document.cookie = "user=" + currentRole;
+                document.cookie = "authStatus=" + "true";
             }
-        });*/
+        });
     },
 
     unflip: function () {
@@ -169,7 +175,6 @@ $(function () {
         document.cookie = "authStatus=false";
         return;
     }
-
 
     $.ajax({
         type: "POST",

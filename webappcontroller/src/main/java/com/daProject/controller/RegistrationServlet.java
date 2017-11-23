@@ -14,20 +14,17 @@ import static com.daProject.dao.entity.Errors.multiplayerCheck;
 public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
 
     public static final RegistrationServlet instance = new RegistrationServlet();
-
-
     public static RegistrationServlet getInstance() {
         return instance;
     }
 
-    private RegistrationServlet() {
-    }
+    private RegistrationServlet() {}
 
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
         RegistrationManager registration = new RegistrationManager();
-
-        JSONObject mpresponse = new JSONObject();
+                                                                                    //  MULTIPLAYER COMBO
+        /*JSONObject mpresponse = new JSONObject();
         String temp = request.getParameter("mp");
         if (temp.equals("get")) {
             System.out.println("_______ doing get ________________");
@@ -40,8 +37,7 @@ public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
         multiplayerCheck = Boolean.parseBoolean(request.getParameter("mp"));
         System.out.println("+++++++++++++++++++++" + multiplayerCheck);
         System.out.println("________________________________________" + mpresponse.get("mp"));
-
-        return null;
-        //registration.registrationAct(request);
+*/
+        return registration.registrationAct(request);
     }
 }

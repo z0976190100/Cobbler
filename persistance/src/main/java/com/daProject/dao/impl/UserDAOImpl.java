@@ -50,15 +50,14 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public User getUserBySurame(String surname) {
+    public User getUserByPhonenumber(String pn) {
         User user = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM User WHERE surName =:paramName");
-            query.setParameter("paramName", surname);
+            Query query = session.createQuery("FROM User WHERE phoneNumber =:paramName");
+            query.setParameter("paramName", pn);
             user = (User) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
-            //MUST be dan
         }
         return user;
     }

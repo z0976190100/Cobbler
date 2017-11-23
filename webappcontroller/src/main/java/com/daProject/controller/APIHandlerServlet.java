@@ -36,7 +36,7 @@ public class APIHandlerServlet extends HttpServlet {
         Map<String, APIRequestHandler> map = new HashMap<>();
 
         map.put("dbInit", EntityHandler.getInstance());
-        map.put("login", LoginServlet.getInstance());
+        map.put("auth", LoginServlet.getInstance());
         map.put("registration", RegistrationServlet.getInstance());
         map.put("getTechRouteByModel", TechRouteServlet.getInstance());
         map.put("getAllUsers", DminHandler.getInstance());
@@ -108,7 +108,7 @@ public class APIHandlerServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            resp.addCookie(roleIdentifier);
+           // resp.addCookie(roleIdentifier);
             resp.setContentType("text/plain; charset=UTF-8");
             try (Writer writer = resp.getWriter()) {
                 response.writeJSONString(writer);//.append((CharSequence)((JSONObject) response).get("operation_list")));
