@@ -1,21 +1,14 @@
 //database initialisation
-$(function () {
-    $.ajax({
-        type: "POST",
-        url: "/testmaven",
-        dataType: "json",
-        data: {requestType: "dbInit"},
-        success: function () {
-            $("#card").flip({
-                trigger: 'manual'
-            });
-            $("#flip-btn").prop("disabled", false);
-        },
-        error: function () {
-            alert("Press F5 button or Refresh page");
-        }
-    });
-});
+var loader = {
+    on: function () {
+        $(".loader").css("display", "block");
+        $("html body").css("background", "#6600cc");
+    },
+    off: function () {
+        $(".loader").css("display", "none");
+        $("html body").css("background", "rgba(0,0,0,0)");
+    }
+};
 
 var main = {
 
@@ -33,19 +26,20 @@ var main = {
     },
 
     fieldRestriction: function (contentValue, fieldId) {
-        switch (contentValue){
+        switch (contentValue) {
             case "":
                 $(fieldId).css("border-color", "red");
                 alert("Поле не заполнено!");
                 return true;
-            default: return false;
+            default:
+                return false;
         }
-return false;
+        return false;
     },
 
     registrationLocal: function () {
         var name = $("#name_input").val();
-        if(main.fieldRestriction("", ".name_input")) return;
+        if (main.fieldRestriction("", ".name_input")) return;
         var surname = $("#surname_input").val();
         var employment = $("#employment_input").val();
         var role = $("#role_input").val();
@@ -128,13 +122,28 @@ return false;
         $(sceneIdHide).css("display", "none");
         $(sceneIdShow).css("display", "block");
 
+    },
+
+    getCookie: function (cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 
 
 };
 // to remove red border fom wrong input field
-    $("#name_input").focus(function () {
-        $("#name_input").css("border-color", "#6600cc");
+$(".name_input").focus(function () {
+    $(".name_input").css("border-color", "#6600cc");
 });
 //  flip action
 $(function () {
@@ -148,5 +157,37 @@ $(function () {
     });
 
     $("#unflip-btn").click(main.unflip());
+});
+
+$(function () {
+
+    loader.on();
+    // check coockies if alredy logged in
+    if (main.getCookie("authStatus") == "true") {
+        main.changeScene("#second", "#first");
+        loader.off();
+        document.cookie = "authStatus=false";
+        return;
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: "/testmaven",
+        dataType: "json",
+        data: {requestType: "dbInit"},
+        success: function () {
+            loader.off();
+            main.changeScene("#first", "#second");
+            $("#card").flip({
+                trigger: 'manual'
+            });
+            $("#flip-btn").prop("disabled", false);
+        },
+        error: function () {
+            alert("Press F5 button or Refresh page");
+        }
+    });
+    document.cookie = "authStatus=true";
 });
 

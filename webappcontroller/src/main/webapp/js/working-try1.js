@@ -27,8 +27,7 @@ var dataRequest = {
         event.stopPropagation();
         var article = $("#all-tech-route-select").val();
         // document.cookie = "username=admin";
-        $("#loader").css("display", "block");
-        $("html body").css("background", "#6600cc");
+        loader.on();
         console.log(article);
         $.ajax({
             type: "POST",
@@ -36,10 +35,9 @@ var dataRequest = {
             dataType: "json",
             data: {requestType: "getTechRouteByModel", article: article},
             success: function (data) {
-                $("#loader").css("display", "none");
-                $("html body").css("background", "rgba(0,0,0,0)");
-                if (data != null) {
-                    // inserting recieved data into DOM
+                loader.off();
+                if (data !== null) {
+
                     console.log(data.operation_list);
                     responseHandler.responseParser(data.operation_list, article);
                 }
@@ -76,17 +74,14 @@ var dataRequest = {
     },
 
     getAllTechRoutsArticles: function () {
-
-        $("#loader").css("display", "block");
-        $("html body").css("background", "#6600cc");
+        loader.on()
         $.ajax({
             type: "POST",
             url: "/testmaven",
             dataType: "json",
             data: {requestType: "getAllTechRoutsArticles"},
             success: function (data) {
-                $("#loader").css("display", "none");
-                $("html body").css("background", "rgba(0,0,0,0)");
+                loader.off();
                 var autocompleteArr = [];
                 var count = 0;
                 for (var key in data) {
@@ -145,18 +140,14 @@ var responseHandler = {
         }
         gogoHandlebars("tech-route");
         techRouteHandlebarsContext.listLines = [];
-    },
-    responseParserAllTR: function (response) {
-
-
     }
 
-}
+};
 
 
 var gogoHandlebars = function (target) {
 
-    var handlebarsAct = function(target, templateId) {
+    var handlebarsAct = function (target, templateId) {
 
 
         var templToCompile = document.getElementById(templateId).innerHTML;
@@ -183,7 +174,17 @@ var gogoHandlebars = function (target) {
             break;
         default:
             console.log("no hendelbars handler yep...");
-    };
+    }
 
 
-}
+};
+var loader = {
+    on: function () {
+        $(".loader").css("display", "block");
+        $("html body").css("background", "#6600cc");
+    },
+    off: function () {
+        $(".loader").css("display", "none");
+        $("html body").css("background", "rgba(0,0,0,0)");
+    }
+};
