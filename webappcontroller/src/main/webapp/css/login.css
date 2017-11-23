@@ -141,3 +141,11 @@ a:hover, a:focus {
     display: inline-block;
     margin: 20px 0;
 }
+
+#first {
+    display: block;
+}
+
+#second {
+    display: none;
+}

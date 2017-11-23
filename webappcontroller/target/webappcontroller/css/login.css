@@ -53,7 +53,10 @@ a:hover, a:focus {
     border-color: #6600cc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(24, 204, 162, 0.6);
     outline: 0 none;
+    background: none;
 }
+
+
 
 .min-height {
     min-height: 380px;
@@ -137,4 +140,12 @@ a:hover, a:focus {
 .login .forgot {
     display: inline-block;
     margin: 20px 0;
+}
+
+#first {
+    display: block;
+}
+
+#second {
+    display: none;
 }

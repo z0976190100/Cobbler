@@ -5,8 +5,10 @@ import com.daProject.manager.executable.RegistrationManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONStreamAware;
+
 import javax.servlet.http.HttpServletRequest;
 
+import static com.daProject.dao.entity.Errors.multiplayerCheck;
 
 
 public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
@@ -25,6 +27,21 @@ public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
         RegistrationManager registration = new RegistrationManager();
 
-        return registration.registrationAct(request);
+        JSONObject mpresponse = new JSONObject();
+        String temp = request.getParameter("mp");
+        if (temp.equals("get")) {
+            System.out.println("_______ doing get ________________");
+            mpresponse.put("mp", multiplayerCheck);
+            System.out.println("sending____________" + mpresponse.get("mp"));
+
+            return mpresponse;
+        }
+        //multiplaying checker
+        multiplayerCheck = Boolean.parseBoolean(request.getParameter("mp"));
+        System.out.println("+++++++++++++++++++++" + multiplayerCheck);
+        System.out.println("________________________________________" + mpresponse.get("mp"));
+
+        return null;
+        //registration.registrationAct(request);
     }
 }

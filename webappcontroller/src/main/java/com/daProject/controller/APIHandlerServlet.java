@@ -17,7 +17,7 @@ import java.util.Map;
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
 import static com.daProject.manager.executable.EntityManager.dataBaseFiller;
 import static com.daProject.manager.executable.EntityManager.roleIdentifier;
-
+import static com.daProject.dao.entity.Errors.multiplayerCheck;
 /**
  * Created by Nataliya on 28.02.2017.
  */
@@ -100,7 +100,7 @@ public class APIHandlerServlet extends HttpServlet {
             }
 
             System.out.println("Get servlet process");
-            response = apiRequestHandler.processRequest(req);
+           response = apiRequestHandler.processRequest(req);
             if (response instanceof JSONObject) {
                 ((JSONObject) response).put("requestProcessingTime", System.currentTimeMillis() - startTime);
             }

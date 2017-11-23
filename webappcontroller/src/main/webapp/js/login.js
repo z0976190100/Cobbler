@@ -4,9 +4,7 @@ $(function () {
         type: "POST",
         url: "/testmaven",
         dataType: "json",
-        data: {
-            requestType: "dbInit"
-        },
+        data: {requestType: "dbInit"},
         success: function () {
             $("#card").flip({
                 trigger: 'manual'
@@ -123,11 +121,21 @@ return false;
         $(".signup_form").css('opacity', '0');
         $("#card").flip(false);
         return false;
+    },
+
+    changeScene: function (sceneIdShow, sceneIdHide) {
+
+        $(sceneIdHide).css("display", "none");
+        $(sceneIdShow).css("display", "block");
+
     }
 
 
 };
-
+// to remove red border fom wrong input field
+    $("#name_input").focus(function () {
+        $("#name_input").css("border-color", "#6600cc");
+});
 //  flip action
 $(function () {
     $("#flip-btn").click(function () {

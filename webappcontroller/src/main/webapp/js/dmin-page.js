@@ -1,7 +1,49 @@
+var localState;
+var globalState;
+
+$(function () {
+    $("#multiplayer-check").on("click", function () {
+        localState = $("#multiplayer-check").is(":checked");
+        console.log("local state is " + localState);
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "registration", mp: localState}
+
+        });
+
+     });
+});
+
+
+    $(function () {
+        $("html").on("mousemove", function () {
+console.log("getting....");
+            $.ajax({
+                type: "POST",
+                url: "/testmaven",
+                dataType: "json",
+                data: {requestType: "registration", mp: "get"},
+                success: function (data) {
+                     globalState = data.mp;
+                    console.log("now global state is " + globalState );
+                    $("#multiplayer-check").prop("checked", globalState);
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+
 var HandlebarsContext = {
     userLine: []
 
-}
+};
 
 var dminActions = {
     getAllUsers: function () {
@@ -13,7 +55,7 @@ var dminActions = {
             success: function (data) {
                 HandlebarsContext = {
                     userLine: []
-                }
+                };
                 for (var key in data) {
                     if (key !== "requestProcessingTime")
                         HandlebarsContext.userLine.push({userId: key, userSurname: data[key]});
@@ -36,13 +78,13 @@ var dminActions = {
             }
         });
     }
-}
+};
 
 
 var responseParser = function (json) {
 
 
-}
+};
 
 var gogoHandlebars = function () {
 
@@ -54,4 +96,4 @@ var gogoHandlebars = function () {
 
 
     document.getElementById("user-table-div").innerHTML += insertingData;
-}
+};

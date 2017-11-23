@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="./css/login.css" rel="stylesheet" type="text/css"/>
+    <title>Test-maven</title>
+</head>
+
+<body class="main">
+
+<div class="login-screen"></div>
+<div class="login-center">
+    <div class="container min-height" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-xs-4 col-md-offset-8">
+                <div class="login" id="card">
+                    <div class="front signin_form">  <!--front-->
+                        <p>Войти</p>
+                        <form class="login-form">
+                            <div class="form-group">                   <!-- add names to inputs -->
+                                <div class="input-group">              <!-- login input -->
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="+380*********"
+                                           value="+380"
+                                           required
+                                           autofocus
+                                           onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"/>
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-phone"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="password-input-field"
+                                           type="password"
+                                           class="form-control"
+                                           placeholder="Пароль"
+                                           required/>
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                </div>
+                            </div><!--<div class="checkbox">
+                                <label><input id="remeber-me-checkbox" type="checkbox" disabled>Запомнить</label>
+                            </div>-->
+
+
+                            <div class="form-group sign-btn">
+                                <input type="button" onclick="main.log_in()" class="btn btn-cyan" value="Начать"
+                                       disabled>
+                                <!-- handle submit event, preventDefault, add my action-->
+                                <!--<p><a href="#" class="forgot">Проблемы с входом? Жми.</a></p>
+                                <p><strong>В первый раз?</strong><br>-->
+                                <span></span><br><br>
+                                <input type="button"
+                                       id="flip-btn"
+                                       class="btn btn-cyan signup signup_link"
+                                       value="Добавить пользователя"
+                                       disabled></p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="back signup_form" style="opacity: 0;">    <!--back-->
+                        <p>Регистрация</p>
+                        <form class="login-form">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="dmin_input" type="text" class="form-control" placeholder="">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="name_input" type="text" class="form-control name_input" placeholder="Имя">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user name_input"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="surname_input" type="text" class="form-control" placeholder="Фамилия">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="employment_input" type="text" class="form-control"
+                                           placeholder="Должность">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select id="role_input" type="text" class="form-control" style="height: 44px;">
+                                        <option value="user">Пользователь</option>
+                                        <option value="superuser">Администратор</option>
+                                        <option value="admin">Сервис</option>
+                                    </select>
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="phonenumber_input" type="text" class="form-control"
+                                           placeholder="Телефон в формате +38**********">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-phone"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="secret1_input" type="password" class="form-control secret1" placeholder="Пароль">
+                                    <!-- TO DO logic for confirming the pass --->
+                                    <span class="input-group-btn"><button type="button" class="btn btn-cyan"><span
+                                            class="fa fa-refresh"></span></button></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="secret2_input" type="password" class="form-control secret2"
+                                           placeholder="Пароль повторно">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-lock"></i>
+                                      </span>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                    <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-envelope"></i>
+                                      </span>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group sign-btn">
+                                <input type="button" class="btn btn-cyan" onclick="main.registrationLocal()"
+                                       value="Добавить пользователя">
+                                <br><br>
+                                <input onclick="location.href='dmin-page.html'" id="unflip-btn"
+                                       class="btn btn-cyan signup" value="Войти"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+
+</body>
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src = "/js/login.js"></script>
+    <title>Test-maven</title>
+</head>
+<body>
+<form >
+    <input type="text" id = "myinput">
+<input type="button" id ="mybutt" onclick="main.registration()" name="singin_button" value="Create">
+</form>
+</body>
+</html>-->
