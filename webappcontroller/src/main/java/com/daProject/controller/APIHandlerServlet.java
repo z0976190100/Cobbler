@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
+import static com.daProject.dao.entity.Errors.roleIdentifier;
+
 
 /**
  * Created by Nataliya on 28.02.2017.
@@ -105,13 +107,12 @@ public class APIHandlerServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           // resp.addCookie(roleIdentifier);
+            roleIdentifier.setValue(String.valueOf(((JSONObject)response).get("role")));
+            resp.addCookie(roleIdentifier);
             resp.setContentType("text/plain; charset=UTF-8");
             try (Writer writer = resp.getWriter()) {
                 response.writeJSONString(writer);//.append((CharSequence)((JSONObject) response).get("operation_list")));
             }
         }
-
     }
-
 }

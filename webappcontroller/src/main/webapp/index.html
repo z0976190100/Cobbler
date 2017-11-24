@@ -43,7 +43,7 @@
         <div></div>
     </figure>
 </div>
-    <div class="login-screen"></div>
+<div class="login-screen"></div>
 <div class="scene" id="first">
     <div class="login-center">
         <div class="container min-height" style="margin-top: 20px;">
@@ -56,7 +56,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input id="login-input-auth"
-                                                type="text"
+                                               type="text"
                                                class="form-control"
                                                placeholder="+380*********"
                                                value="+380"
@@ -81,28 +81,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group sign-btn">
-                                    <input type="button" onclick="main.changeScene('#second','#first')"
-                                           class="btn btn-cyan" value="Начать">
+                                    <input id="log-in-btn"
+                                           type="button"
+                                           onclick="main.log_in(event)"
+                                           class="btn btn-cyan"
+                                           value="Начать">
                                     <span></span><br><br>
-                                    <input type="button"
-                                           id="flip-btn"
+                                    <input id="flip-btn1"
+                                           type="button"
+                                           onclick="main.log_in(event)"
                                            class="btn btn-cyan signup signup_link"
-                                           value="Добавить пользователя"
-                                           disabled></p>
+                                           value="Добавить пользователя">
                                 </div>
                             </form>
                         </div>
                         <div class="back signup_form" style="opacity: 0;">    <!--back-->
                             <p>Регистрация</p>
                             <form class="login-form">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input id="dmin_input" type="text" class="form-control" placeholder="">
-                                        <span class="input-group-addon">
-                                        <i class="glyphicon glyphicon-ok"></i>
-                                      </span>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input id="name_input" type="text" class="form-control name_input"
@@ -229,8 +224,8 @@
     </div>
     <div class="login-center">
         <div class="container min-height" style="margin-top: 20px;">
-            <div class="row">
-                <div class="col-xs-1 col-md-offset-0">
+            <div class="row justify-content-between">
+                <div class="col-xs-5 col-md-offset-0">
                     <div class="login" id="card2">
                         <div class="front signin_form">  <!--front-->
                             <p>Выберите модель </p>
@@ -257,9 +252,22 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-xs-2 col-md-offset-8">
+                <div class="col-xs-7">
                     <div class="navibar" style="float: left;">
-                    <p>navibar</p>
+                        <div id="navbar">
+                            <input id="exit"  class="navbuts" type="button" value="exit" onclick="main.log_out()">
+                            <input id="exit2" class="navbuts" type="button" value="exit" onclick="main.log_out()">
+                            <input id="exit3" class="navbuts" type="button" value="exit" onclick="main.log_out()">
+                            <input id="exit4" class="navbuts" type="button" value="exit" onclick="main.log_out()">
+                            <input id="exit5" class="navbuts" type="button" value="exit" onclick="main.log_out()">
+
+                            <input type="checkbox" id="toggle-menu" class="toggle-menu" name="">
+                            <label for="toggle-menu">
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

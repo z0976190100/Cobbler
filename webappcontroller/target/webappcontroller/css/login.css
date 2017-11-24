@@ -261,3 +261,13 @@ figure div:nth-child(8):after {
         border-radius: 50%;
     }
 }
+
+.navibar {
+    weight: 250px;
+    height: 70px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #6600cc;
+    margin-top: 0;
+
+}

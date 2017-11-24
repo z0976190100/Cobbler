@@ -9,9 +9,10 @@ import com.daProject.dao.hibernateFactory.Factory;
 import javax.servlet.http.Cookie;
 import java.sql.SQLException;
 
+
 public class EntityManager {
 
-    public static Cookie roleIdentifier;
+
 
     static boolean DBfillerStatus = false;
 
@@ -139,7 +140,6 @@ public class EntityManager {
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr3);
         Factory.getInstance().getTechRouteDAO().saveTechRoute(tr4);
 
-        roleIdentifier = new Cookie("roleIdentifier", "none");
 
         DBfillerStatus = true;
         System.out.println("DB filling proccess is done " + DBfillerStatus);

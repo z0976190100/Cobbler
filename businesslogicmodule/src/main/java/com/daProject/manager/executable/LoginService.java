@@ -14,13 +14,12 @@ import java.util.Map;
 public class LoginService {
 
     public JSONObject loginController(HttpServletRequest request) throws Exception {
-        Cookie c = new Cookie("role", "");
         JSONObject response = new JSONObject();
-        String phoneneumber = request.getParameter("phoneneumber");
+        String phonenumber = request.getParameter("phonenumber");
         String secret = request.getParameter("secret");
         User currentUser = null;
         try {
-            currentUser = Factory.getInstance().getUserDAO().getUserByPhonenumber(phoneneumber);
+            currentUser = Factory.getInstance().getUserDAO().getUserByPhonenumber(phonenumber);
         } catch (SQLException e) {
             System.err.println("Enable to connect");
             e.printStackTrace();
@@ -34,6 +33,7 @@ public class LoginService {
                 }
             }
         }
-        return null;
+        response.put("auth", "fail");
+        return response;
     }
 }
