@@ -21,9 +21,10 @@ public class EntityManager {
         if (DBfillerStatus) return DBfillerStatus;
 
         User dmin = new User();
+        dmin.setFirstName("Сергей");
         dmin.setPhoneNumber("+380976190100");
         dmin.setPassword("zhst");
-        dmin.setRole("Сервис");
+        dmin.setRole("admin");
 
         Factory.getInstance().getUserDAO().saveUser(dmin);
 

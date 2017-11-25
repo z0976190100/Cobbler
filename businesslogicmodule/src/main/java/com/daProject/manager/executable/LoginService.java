@@ -29,6 +29,7 @@ public class LoginService {
                 if (secret.equals(tempPassword)) {
                     response.put("auth", "win");
                     response.put("role", String.valueOf(currentUser.getRole()));
+                    response.put("firstName", String.valueOf(currentUser.getFirstName()));
                     return response;
                 }
             }

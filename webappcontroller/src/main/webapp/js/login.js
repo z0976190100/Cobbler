@@ -137,12 +137,14 @@ var main = {
                     document.cookie = "user=" + currentUser;
                     document.cookie = "user=" + currentRole;
                     document.cookie = "authStatus=" + "true";
+                    document.getElementById("hello").innerHTML = ("Добрый день, "+ currentUser);
                     switch (ev) {
                         case "log-in-btn":
                             main.changeScene("#second", "#first");
+                            main.roleActions(currentRole);
                             return true;
                         case "flip-btn1":
-                            if (currentRole == "Сервис") {
+                            if (currentRole == "admin") {
                                 main.flip();
                                 return true;
                             }
@@ -161,6 +163,22 @@ var main = {
     },
 
     roleActions: function (data) {
+switch (data){
+    case "admin":
+        return;
+    case "superuser":
+        return;
+    case "user":
+        console.log("role user");
+        $("#dmin-button").prop("disabled", "true");
+        return;
+}
+
+
+
+
+
+
 
     },
 
@@ -252,3 +270,12 @@ $(function () {
     //document.cookie = "authStatus=true";
 });
 
+$(function () {
+    $(".toggle-menu").on("click", function () {
+        var tagState = $("#toggle-menu").is(":checked");
+        console.log(tagState);
+        if(tagState) {$("#inhamburger").css("visibility", "visible");}
+        else{$("#inhamburger").css("visibility", "hidden");}
+    })
+
+})

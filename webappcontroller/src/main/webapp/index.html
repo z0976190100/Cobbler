@@ -205,7 +205,7 @@
         <input type="button"
                class="btn btn-cyan"
                onclick="dataRequest.techRouteCommitment()"
-               value="Закрыть"/>
+               value="Провести"/>  <!-- to add functionality to destroy bolla -->
        </span>
             </div>
         </td>
@@ -224,7 +224,7 @@
     </div>
     <div class="login-center">
         <div class="container min-height" style="margin-top: 20px;">
-            <div class="row justify-content-between">
+            <div class="row align-items-center">
                 <div class="col-xs-5 col-md-offset-0">
                     <div class="login" id="card2">
                         <div class="front signin_form">  <!--front-->
@@ -247,34 +247,95 @@
 
                             </form>
                         </div>
-                        <table>
-                            <tr id="tech-route"></tr>
-                        </table>
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    <div class="navibar" style="float: left;">
+                    <div class="navibar">
+                        <p id="hello">Добрый день,</p>
                         <div id="navbar">
-                            <input id="exit"  class="navbuts" type="button" value="exit" onclick="main.log_out()">
-                            <input id="exit2" class="navbuts" type="button" value="exit" onclick="main.log_out()">
-                            <input id="exit3" class="navbuts" type="button" value="exit" onclick="main.log_out()">
-                            <input id="exit4" class="navbuts" type="button" value="exit" onclick="main.log_out()">
-                            <input id="exit5" class="navbuts" type="button" value="exit" onclick="main.log_out()">
-
+                            <div id="inhamburger">
+                                <input id="exit" class="btn btn-cyan inhamburger" type="button" value="Выйти"
+                                       onclick="main.log_out()">
+                                <input id="dmin-button" class="btn btn-cyan inhamburger" type="button" value="Сервис"
+                                       onclick="main.changeScene('#dmin','#second');">
+                                <input id="exit3" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                                <input id="exit4" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                                <input id="exit5" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                            </div>
                             <input type="checkbox" id="toggle-menu" class="toggle-menu" name="">
                             <label for="toggle-menu">
                                 <span class="menu-bar"></span>
                                 <span class="menu-bar"></span>
                                 <span class="menu-bar"></span>
+                                <span class="menu-bar invisible"></span>
+                                <span class="menu-bar invisible"></span>
                             </label>
                         </div>
                     </div>
                 </div>
+                <table>
+                    <tr id="tech-route"></tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
+<div class="scene" id="dmin">
+    <div class="login-center">
+        <div class="container min-height" style="margin-top: 20px;">
+            <div class="row align-items-center">
+                <div class="col-xs-1 col-md-offset-0">
+                    <div class="login" id="card3">
+                        <div class="front signin_form">
+                            <script id="users-table-template" type="text/x-handlebars-template">
+                                <div>
+                                    <table>
+                                        {{#each userLine}}
+                                        <tr>
+                                            <td>{{userSurname}}</td>
+                                            <td>{{userId}}</td>
+                                            <td><input type="button" class="btn btn-cyan" onclick="dminActions.destroyUser(event)" name="{{userId}}"
+                                                       value="Destroy {{userSurname}}"></td>
+                                        </tr>
+                                        {{/each}}
+                                    </table>
+                                </div>
+                            </script>
+                            <!--front-->
+                            <p>gwgsaui</p>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <div id="m3" class="input-group">
+                                        <input type="button" onclick="dminActions.getAllUsers()"  class="form-control" name="get-all-users" value="Get all users">
+                                        <span  class="input-group-addon">
+                                          <i class="glyphicon glyphicon-search"></i>
+                                      </span>
+                                        <div id="user-table-div">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+
+                <input id="multiplayer-check" type="checkbox" value="this is it">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <script src="js/handlebars-v4.0.11.js"></script>
+<script src="js/dmin-page.js"></script>
 <script src="js/working-try1.js"></script>
 <script src="js/login.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>

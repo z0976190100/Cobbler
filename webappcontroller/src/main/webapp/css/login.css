@@ -150,6 +150,10 @@ a:hover, a:focus {
     display: none;
 }
 
+#dmin {
+    display: none;
+}
+
 #loader {
     position: absolute;
     top: 50%;
@@ -262,24 +266,29 @@ figure div:nth-child(8):after {
     }
 }
 
-.navibarw {
-    width: 700px;
-    height: 70px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background: #6600cc;
-    margin-top: 0;
+.navibar {
+    float: right;
 
+}
+
+#hello {
+    text-align: right;
+    color: white;
 }
 
 #navbar {
-    align-items: baseline;
     float: right;
+    display: inline;
 }
 
+#inhamburger {
+display: inline;
+    visibility: hidden;
+}
 
-
-
+#toggle-menu {
+    padding-top: 20px;
+}
 
 .toggle-menu {
     display: none;
@@ -295,7 +304,7 @@ figure div:nth-child(8):after {
     transition: .20s ease-in-out;
 }
 label[for="toggle-menu"]{
-    height: 24px;
+    height: 10px;
     cursor: pointer;
 }
 .menu-bar:nth-child(1){
@@ -307,6 +316,14 @@ label[for="toggle-menu"]{
 }
 .menu-bar:nth-child(3){
     top: 14px;
+}
+
+.menu-bar:nth-child(4){
+    top: 21px;
+}
+
+.menu-bar:nth-child(5){
+    top: 28px;
 }
 .toggle-menu:checked + label[for="toggle-menu"] span:nth-child(1) {
     transform: rotate(135deg);
