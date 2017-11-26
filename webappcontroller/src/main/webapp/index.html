@@ -188,8 +188,8 @@
 <!--<div class="login-screen"></div>-->
 <div class="scene" id="second">
     <script id="tech-route-template" type="text/x-handlebars-template">
-        <td id="td" style="width: 300px !important;">
-            <div id="tech-route-div" style="width: 300px !important;" class="login-form input-group form-control">
+        <div class="clearfix col-md-3 col-md-auto" id="td">
+            <div id="tech-route-div" style="width: 270px; !important;" class="login-form input-group form-control">
                 <p>Наряд No:</p>
                 <p>Дата:</p>
                 <p>Время открытия:</p>
@@ -208,7 +208,7 @@
                value="Провести"/>  <!-- to add functionality to destroy bolla -->
        </span>
             </div>
-        </td>
+        </div>
     </script>
     <div class="loader">
         <figure>
@@ -223,9 +223,9 @@
         </figure>
     </div>
     <div class="login-center">
-        <div class="container min-height" style="margin-top: 20px;">
-            <div class="row align-items-center">
-                <div class="col-xs-5 col-md-offset-0">
+        <div class="container-fluid min-height " style="margin-top: 20px;">
+            <div class="row align-items-center flex-md-row">
+                <div class="col-md-6 pull-md-6">
                     <div class="login" id="card2">
                         <div class="front signin_form">  <!--front-->
                             <p>Выберите модель </p>
@@ -249,7 +249,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-md-6 push-md-6">
                     <div class="navibar">
                         <p id="hello">Добрый день,</p>
                         <div id="navbar">
@@ -276,9 +276,15 @@
                         </div>
                     </div>
                 </div>
-                <table>
-                    <tr id="tech-route"></tr>
+                <div class="container">
+                <div class="row" id="tech-route">
+
+                <!--<table id="tr">-->
+                    <!--<tr id="tech-route"></tr>-->
+<!--
                 </table>
+--></div>
+                </div>
             </div>
         </div>
     </div>
@@ -297,7 +303,8 @@
                                         <tr>
                                             <td>{{userSurname}}</td>
                                             <td>{{userId}}</td>
-                                            <td><input type="button" class="btn btn-cyan" onclick="dminActions.destroyUser(event)" name="{{userId}}"
+                                            <td><input type="button" class="btn btn-cyan"
+                                                       onclick="dminActions.destroyUser(event)" name="{{userId}}"
                                                        value="Destroy {{userSurname}}"></td>
                                         </tr>
                                         {{/each}}
@@ -309,8 +316,9 @@
                             <form class="login-form">
                                 <div class="form-group">
                                     <div id="m3" class="input-group">
-                                        <input type="button" onclick="dminActions.getAllUsers()"  class="form-control" name="get-all-users" value="Get all users">
-                                        <span  class="input-group-addon">
+                                        <input type="button" onclick="dminActions.getAllUsers()" class="form-control"
+                                               name="get-all-users" value="Get all users">
+                                        <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-search"></i>
                                       </span>
                                         <div id="user-table-div">

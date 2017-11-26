@@ -150,6 +150,10 @@ a:hover, a:focus {
     display: none;
 }
 
+#dmin {
+    display: none;
+}
+
 #loader {
     position: absolute;
     top: 50%;
@@ -160,6 +164,11 @@ a:hover, a:focus {
     height: 5.4em;
     display: none;
     /*opacity:0.2;*/
+}
+
+#tr {
+    height: auto;
+    margin: 20px;
 }
 
 figure {
@@ -263,11 +272,74 @@ figure div:nth-child(8):after {
 }
 
 .navibar {
-    weight: 250px;
-    height: 70px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background: #6600cc;
-    margin-top: 0;
+    float: right;
 
 }
+
+#hello {
+    text-align: right;
+    color: white;
+}
+
+#navbar {
+    float: right;
+    display: inline;
+}
+
+#inhamburger {
+display: inline;
+    visibility: hidden;
+}
+
+#toggle-menu {
+    padding-top: 20px;
+}
+
+.toggle-menu {
+    display: none;
+}
+.menu-bar {
+    border-color: white;
+    width: 30px;
+    height: 4px;
+    border-radius: 4px;
+    background: white;
+    display: block;
+    position: relative;
+    transition: .20s ease-in-out;
+}
+label[for="toggle-menu"]{
+    height: 10px;
+    cursor: pointer;
+}
+.menu-bar:nth-child(1){
+    top: 0;
+}
+.menu-bar:nth-child(2){
+    top: 7px;
+    left: 0;
+}
+.menu-bar:nth-child(3){
+    top: 14px;
+}
+
+.menu-bar:nth-child(4){
+    top: 21px;
+}
+
+.menu-bar:nth-child(5){
+    top: 28px;
+}
+.toggle-menu:checked + label[for="toggle-menu"] span:nth-child(1) {
+    transform: rotate(135deg);
+    top: 10px;
+}
+.toggle-menu:checked + label[for="toggle-menu"] span:nth-child(2) {
+    opacity: 0;
+    left: -50px;
+}
+.toggle-menu:checked + label[for="toggle-menu"] span:nth-child(3) {
+    transform: rotate(-135deg);
+    top: 4px;
+}
+

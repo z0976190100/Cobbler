@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="form-group sign-btn">
                                     <input id="log-in-btn"
-                                            type="button"
+                                           type="button"
                                            onclick="main.log_in(event)"
                                            class="btn btn-cyan"
                                            value="Начать">
@@ -188,8 +188,8 @@
 <!--<div class="login-screen"></div>-->
 <div class="scene" id="second">
     <script id="tech-route-template" type="text/x-handlebars-template">
-        <td id="td" style="width: 300px !important;">
-            <div id="tech-route-div" style="width: 300px !important;" class="login-form input-group form-control">
+        <div class="clearfix col-md-3 col-md-auto" id="td">
+            <div id="tech-route-div" style="width: 270px; !important;" class="login-form input-group form-control">
                 <p>Наряд No:</p>
                 <p>Дата:</p>
                 <p>Время открытия:</p>
@@ -205,10 +205,10 @@
         <input type="button"
                class="btn btn-cyan"
                onclick="dataRequest.techRouteCommitment()"
-               value="Закрыть"/>
+               value="Провести"/>  <!-- to add functionality to destroy bolla -->
        </span>
             </div>
-        </td>
+        </div>
     </script>
     <div class="loader">
         <figure>
@@ -223,9 +223,9 @@
         </figure>
     </div>
     <div class="login-center">
-        <div class="container min-height" style="margin-top: 20px;">
-            <div class="row">
-                <div class="col-xs-1 col-md-offset-0">
+        <div class="container-fluid min-height " style="margin-top: 20px;">
+            <div class="row align-items-center flex-md-row">
+                <div class="col-md-6 pull-md-6">
                     <div class="login" id="card2">
                         <div class="front signin_form">  <!--front-->
                             <p>Выберите модель </p>
@@ -247,22 +247,103 @@
 
                             </form>
                         </div>
-                        <table>
-                            <tr id="tech-route"></tr>
-                        </table>
                     </div>
                 </div>
-                <div class="col-xs-2 col-md-offset-8">
-                    <div class="navibar" style="float: left;">
-                        <p>navibar</p>
-                        <input id="exit" type="button" value="exit" onclick="main.log_out()">
+                <div class="col-md-6 push-md-6">
+                    <div class="navibar">
+                        <p id="hello">Добрый день,</p>
+                        <div id="navbar">
+                            <div id="inhamburger">
+                                <input id="exit" class="btn btn-cyan inhamburger" type="button" value="Выйти"
+                                       onclick="main.log_out()">
+                                <input id="dmin-button" class="btn btn-cyan inhamburger" type="button" value="Сервис"
+                                       onclick="main.changeScene('#dmin','#second');">
+                                <input id="exit3" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                                <input id="exit4" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                                <input id="exit5" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                            </div>
+                            <input type="checkbox" id="toggle-menu" class="toggle-menu" name="">
+                            <label for="toggle-menu">
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar invisible"></span>
+                                <span class="menu-bar invisible"></span>
+                            </label>
+                        </div>
                     </div>
+                </div>
+                <div class="container">
+                <div class="row" id="tech-route">
+
+                <!--<table id="tr">-->
+                    <!--<tr id="tech-route"></tr>-->
+<!--
+                </table>
+--></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="scene" id="dmin">
+    <div class="login-center">
+        <div class="container min-height" style="margin-top: 20px;">
+            <div class="row align-items-center">
+                <div class="col-xs-1 col-md-offset-0">
+                    <div class="login" id="card3">
+                        <div class="front signin_form">
+                            <script id="users-table-template" type="text/x-handlebars-template">
+                                <div>
+                                    <table>
+                                        {{#each userLine}}
+                                        <tr>
+                                            <td>{{userSurname}}</td>
+                                            <td>{{userId}}</td>
+                                            <td><input type="button" class="btn btn-cyan"
+                                                       onclick="dminActions.destroyUser(event)" name="{{userId}}"
+                                                       value="Destroy {{userSurname}}"></td>
+                                        </tr>
+                                        {{/each}}
+                                    </table>
+                                </div>
+                            </script>
+                            <!--front-->
+                            <p>gwgsaui</p>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <div id="m3" class="input-group">
+                                        <input type="button" onclick="dminActions.getAllUsers()" class="form-control"
+                                               name="get-all-users" value="Get all users">
+                                        <span class="input-group-addon">
+                                          <i class="glyphicon glyphicon-search"></i>
+                                      </span>
+                                        <div id="user-table-div">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+
+                <input id="multiplayer-check" type="checkbox" value="this is it">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <script src="js/handlebars-v4.0.11.js"></script>
+<script src="js/dmin-page.js"></script>
 <script src="js/working-try1.js"></script>
 <script src="js/login.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>

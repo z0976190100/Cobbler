@@ -166,6 +166,11 @@ a:hover, a:focus {
     /*opacity:0.2;*/
 }
 
+#tr {
+    height: auto;
+    margin: 20px;
+}
+
 figure {
     margin: 0;
     transform: translate(-50%, -50%) rotate(0deg) scale(1.4, 1.4);
@@ -337,3 +342,4 @@ label[for="toggle-menu"]{
     transform: rotate(-135deg);
     top: 4px;
 }
+
