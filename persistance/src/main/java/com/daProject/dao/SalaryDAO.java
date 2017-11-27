@@ -1,11 +1,11 @@
 package com.daProject.dao;
 
-import com.daProject.dao.entity.Salary;
+import com.daProject.dao.entity.SalaryPeriod;
 import com.daProject.dao.entity.User;
 
 public interface SalaryDAO {
 
-public void addSalary (Salary salary);
-void updateSalary (Salary newSalary);
-Salary getSalaryBySurname (User surname);
+public void addSalary (SalaryPeriod salaryPeriod);
+void updateSalary (SalaryPeriod newSalaryPeriod);
+SalaryPeriod getSalaryBySurname (User surname);
 }

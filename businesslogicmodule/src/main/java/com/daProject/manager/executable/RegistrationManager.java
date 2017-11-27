@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RegistrationManager {
 
-    private Boolean validationAct(HttpServletRequest request) throws SQLException {
+    private boolean validationAct(HttpServletRequest request) throws SQLException {
 
         UserDAOImpl userDAOImpl = new UserDAOImpl();
         JSONObject validationResult = new JSONObject();

@@ -343,3 +343,19 @@ label[for="toggle-menu"]{
     top: 4px;
 }
 
+.pt-xl-2 {
+    padding-top: 10em !important;
+}
+
+.pt-md-2 {
+    padding-top: 40em !important;
+}
+
+.pt-2 {
+    padding-top: 40em !important;
+}
+
+
+#bolla-buttons-div {
+    display: inline;
+}

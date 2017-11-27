@@ -1,6 +1,5 @@
 package com.daProject.controller;
 
-import com.daProject.controller.utils.EntityHandler;
 import com.daProject.controller.utils.JSON;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONStreamAware;
@@ -17,9 +16,7 @@ import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUE
 import static com.daProject.dao.entity.Errors.roleIdentifier;
 
 
-/**
- * Created by Nataliya on 28.02.2017.
- */
+
 public class APIHandlerServlet extends HttpServlet {
     public abstract static class APIRequestHandler {
 

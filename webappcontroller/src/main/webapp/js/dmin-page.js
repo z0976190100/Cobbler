@@ -1,6 +1,7 @@
 var localState;
 var globalState;
 
+/*
 $(function () {
     $("#multiplayer-check").on("click", function () {
         localState = $("#multiplayer-check").is(":checked");
@@ -38,6 +39,7 @@ console.log("getting....");
     });
 
 
+*/
 
 
 var HandlebarsContext = {

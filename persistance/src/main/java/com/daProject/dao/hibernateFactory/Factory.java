@@ -13,6 +13,7 @@ public class Factory {
     private static TechRouteDAO tRDAO = null;
    // private static TOpsTRoutsDAO totsDAO = null;
     private static Factory instance = null;
+    private static WorkSheetDAO workSheetDAO = null;
 
     public static synchronized Factory getInstance() {
         if (instance == null) {
@@ -51,6 +52,16 @@ public class Factory {
     }
 
 */
+public WorkSheetDAO getWorkSheetDAO(){
+    if(workSheetDAO == null){
+        workSheetDAO =new WorkSheetDAOImpl();
+        }
+        return workSheetDAO;
+    }
+
+
+
+
     public ValiDataDAO getValiDataDAO() {
         if (valiDataDAO == null) {
             valiDataDAO = new ValiDataDAOImpl();

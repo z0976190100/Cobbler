@@ -188,7 +188,7 @@
 <!--<div class="login-screen"></div>-->
 <div class="scene" id="second">
     <script id="tech-route-template" type="text/x-handlebars-template">
-        <div class="clearfix col-md-3 col-md-auto" id="td">
+        <div class="clearfix col-md-3 col-md-auto pt-md-2 pt-xl-2 pt-2" id="td">
             <div id="tech-route-div" style="width: 270px; !important;" class="login-form input-group form-control">
                 <p>Наряд No:</p>
                 <p>Дата:</p>
@@ -202,10 +202,17 @@
                 {{{inputLabelBody}}}{{/each}}
             </ul>
         </form>
+                    <div id="bolla-buttons-div">
         <input type="button"
                class="btn btn-cyan"
                onclick="dataRequest.techRouteCommitment()"
-               value="Провести"/>  <!-- to add functionality to destroy bolla -->
+               value="Провести"/>
+                    <!-- to add functionality to destroy bolla -->
+                    <input type="button"
+                           class="btn btn-cyan"
+                           onclick="dataRequest.techRouteCommitment()"
+                           value="Провести"/>
+                        </div>
        </span>
             </div>
         </div>
@@ -238,7 +245,7 @@
                                                class="form-control"
                                                style="height: 44px;">
                                         <span id="model-input-submit"
-                                              onclick="dataRequest.getTechRouteByModel()"
+                                              onclick="dataRequest.getTechRouteByModel(event)"
                                               class="input-group-addon">
                                           <i class="glyphicon glyphicon-search"></i>
                                       </span>

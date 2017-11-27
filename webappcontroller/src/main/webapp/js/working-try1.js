@@ -54,7 +54,7 @@ var dataRequest = {
         operationRegister.push(ev);
     },
 
-    techRouteCommitment: function () {
+    techRouteComitment: function () {
         console.log(operationRegister);
         //dataRequest.techRouteFinalize(operationRegister);
     },
