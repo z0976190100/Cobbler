@@ -1,16 +1,19 @@
 var localState;
 var globalState;
+var contentToSync = [
+    {target: "", localState: "", globalState: ""}
+];
 
-/*
+
 $(function () {
-    $("#multiplayer-check").on("click", function () {
-        localState = $("#multiplayer-check").is(":checked");
+    $(".multiuser-syncronized-checkboxes").on("click", function (event) {
+        localState = $(event.target.id).is(":checked");
         console.log("local state is " + localState);
         $.ajax({
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "registration", mp: localState}
+            data: {requestType: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
 
         });
 
@@ -21,30 +24,26 @@ $(function () {
     $(function () {
         $("html").on("mousemove", function () {
 console.log("getting....");
-            $.ajax({
-                type: "POST",
-                url: "/testmaven",
-                dataType: "json",
-                data: {requestType: "registration", mp: "get"},
-                success: function (data) {
-                     globalState = data.mp;
-                    console.log("now global state is " + globalState );
-                    $("#multiplayer-check").prop("checked", globalState);
-                }
+    $.ajax({
+        type: "POST",
+        url: "/testmaven",
+        dataType: "json",
+        data: {requestType: "state", purpose: "get"},
+        success: function (data) {
+            if(data.syncRequired){
+            contentToSync = data;
+            main.contentSyncronization(data);}
+            /*console.log("now global state is " + globalState);
+            $("#multiplayer-check").prop("checked", globalState);*/
+        }
 
-            });
-
+    });
         });
 
     });
 
-
-*/
-
-
 var HandlebarsContext = {
     userLine: []
-
 };
 
 var dminActions = {

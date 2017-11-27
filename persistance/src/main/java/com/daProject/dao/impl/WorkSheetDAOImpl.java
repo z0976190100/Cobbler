@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import javax.swing.*;
 import java.sql.SQLException;
 
-import static com.daProject.dao.entity.Errors.workSheetStringGlobalState;
+import static com.daProject.dao.entity.WorkSheet.workSheetStringGlobalState;
 
 public class WorkSheetDAOImpl implements WorkSheetDAO {
 

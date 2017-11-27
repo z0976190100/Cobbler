@@ -1,24 +1,24 @@
 package com.daProject.controller;
 
 
-import com.daProject.manager.executable.RegistrationManager;
+import com.daProject.manager.executable.RegistrationService;
 import org.json.simple.JSONStreamAware;
 
 import javax.servlet.http.HttpServletRequest;
 
 
-public class RegistrationServlet extends APIHandlerServlet.APIRequestHandler {
+public class RegistrationHandler extends APIHandlerServlet.APIRequestHandler {
 
-    public static final RegistrationServlet instance = new RegistrationServlet();
-    public static RegistrationServlet getInstance() {
+    public static final RegistrationHandler instance = new RegistrationHandler();
+    public static RegistrationHandler getInstance() {
         return instance;
     }
 
-    private RegistrationServlet() {}
+    private RegistrationHandler() {}
 
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
-        RegistrationManager registration = new RegistrationManager();
+        RegistrationService registration = new RegistrationService();
                                                                                     //  MULTIPLAYER COMBO
         return registration.registrationAct(request);
     }

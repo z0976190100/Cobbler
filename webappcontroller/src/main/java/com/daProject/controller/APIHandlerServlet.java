@@ -27,17 +27,18 @@ public class APIHandlerServlet extends HttpServlet {
 
 
   private static Map<String, APIRequestHandler> apiRequestHandlers = new HashMap<>();
-
+    public static boolean multiplayer = false;
     static {
         Map<String, APIRequestHandler> map = new HashMap<>();
 
         map.put("dbInit", EntityHandler.getInstance());
+        map.put("state", WorkSheetHandler.getInstance());
         map.put("auth", LoginHandler.getInstance());
-        map.put("registration", RegistrationServlet.getInstance());
-        map.put("getTechRouteByModel", TechRouteServlet.getInstance());
+        map.put("registration", RegistrationHandler.getInstance());
+        map.put("getTechRouteByModel", TechRouteHandler.getInstance());
         map.put("getAllUsers", DminHandler.getInstance());
         map.put("destroyUser", DminHandler.getInstance());
-        map.put("getAllTechRoutsArticles", TechRouteServlet.getInstance());
+        map.put("getAllTechRoutsArticles", TechRouteHandler.getInstance());
 
         apiRequestHandlers = Collections.unmodifiableMap(map);
     }

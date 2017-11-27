@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RegistrationManager {
+public class RegistrationService {
 
     private boolean validationAct(HttpServletRequest request) throws SQLException {
 

@@ -10,7 +10,7 @@ import javax.servlet.http.Cookie;
 import java.sql.SQLException;
 
 
-public class EntityManager {
+public class EntityService {
 
 
 

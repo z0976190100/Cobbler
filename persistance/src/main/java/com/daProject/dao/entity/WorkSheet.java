@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class WorkSheet extends WorkSheetUnit {
 
 
-
+public static volatile boolean syncRequired = false;
+    public static volatile boolean workSheetStringGlobalState = false;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
