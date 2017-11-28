@@ -5,7 +5,6 @@ import com.daProject.dao.hibernateFactory.HibernateSessionFactory;
 import com.daProject.dao.UserDAO;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import static com.daProject.dao.entity.Errors.errorMessage;
 
 
 public class UserDAOImpl implements UserDAO {
-   // public static String errorMessage = "";
 
     @Override
     public void saveUser(User user) throws SQLException {
@@ -27,10 +25,11 @@ public class UserDAOImpl implements UserDAO {
             session.save(user);
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, e.getMessage(),
+                    "Error I/O", JOptionPane.ERROR_MESSAGE);
             //MUST be dan
         } finally {
-            if (session != null & session.isOpen()) {
+            if (session != null && session.isOpen()) {
                 session.close();
             }
         }
@@ -44,7 +43,6 @@ public class UserDAOImpl implements UserDAO {
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-            //MUST be dan
         }
     }
 
@@ -70,7 +68,6 @@ public class UserDAOImpl implements UserDAO {
             idUser = (Long) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
-            //MUST be dan
         }
         return idUser;
     }
@@ -106,7 +103,9 @@ public class UserDAOImpl implements UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(userTD.getRole()!= null) return userTD.getRole();
+        if(userTD != null) {
+            if (userTD.getRole() != null) return userTD.getRole();
+        }
 
         return errorMessage;
     }

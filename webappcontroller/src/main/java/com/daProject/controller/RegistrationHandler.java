@@ -19,7 +19,7 @@ public class RegistrationHandler extends APIHandlerServlet.APIRequestHandler {
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
         RegistrationService registration = new RegistrationService();
-                                                                                    //  MULTIPLAYER COMBO
+
         return registration.registrationAct(request);
     }
 }

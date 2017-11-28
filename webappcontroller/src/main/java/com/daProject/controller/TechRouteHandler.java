@@ -21,9 +21,10 @@ public class TechRouteHandler extends APIHandlerServlet.APIRequestHandler {
 
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
+
         TechRouteService trm = new TechRouteService();
         JSONObject responseJSON = new JSONObject();
-        String target = request.getParameter("requestType");
+        String target = request.getParameter("requestCase");
         if (!multiplayer) multiplayer = true;
 
         switch (target) {

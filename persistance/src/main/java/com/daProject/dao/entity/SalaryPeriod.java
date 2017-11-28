@@ -1,24 +1,20 @@
+// !!!!!!!!!!!!! UNDER CONSTRUCTION !!!!!!!!!!!!!!!
+
 package com.daProject.dao.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.math.BigInteger;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Entity
 @Table(name = "salary")
 public class SalaryPeriod {
-
 
     private long id;
     private String surNameId;
     private String employment;
     private BigInteger salary;
 
-    //private Set<ValiData> valiData = new HashSet<>();
 
 
     public SalaryPeriod() { }

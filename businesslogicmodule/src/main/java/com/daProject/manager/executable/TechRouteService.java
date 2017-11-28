@@ -11,31 +11,29 @@ import java.util.Map;
 
 public class TechRouteService {
 
-    String opsList;
-    TechRouteDAOImpl trimp = new TechRouteDAOImpl();
+    private TechRouteDAOImpl trimp = new TechRouteDAOImpl();
 
     public String getOpsList(String modelArt) {
 
+        String opsList;
         opsList = trimp.getOpsListByModelArt(modelArt);
-        System.out.println("_____----------____------------- tech route for " + modelArt +
-        " is " + opsList);
         return opsList;
     }
 
-    public Map<String, String> getAllTechRoutsArticles(){
+    public Map<String, String> getAllTechRoutsArticles() {
 
-            List<TechRoute> alArts = new ArrayList<>();
-            Map<String, String> allArts = new HashMap<>();
+        List<TechRoute> alArts = new ArrayList<>();
+        Map<String, String> allArts = new HashMap<>();
 
-            try {
-                alArts = trimp.getAllTechRoutsArticles();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            alArts = trimp.getAllTechRoutsArticles();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-            for (TechRoute trr : alArts) {
-                allArts.put(String.valueOf(trr.getId()), trr.getModelArt());
-            }
+        for (TechRoute trr : alArts) {
+            allArts.put(String.valueOf(trr.getId()), trr.getModelArt());
+        }
 
         return allArts;
     }

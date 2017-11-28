@@ -6,9 +6,9 @@ import org.json.simple.JSONStreamAware;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-import java.util.Set;
 
 public class DminHandler extends APIHandlerServlet.APIRequestHandler {
+
     public static final DminHandler instance = new DminHandler();
 
     public static DminHandler getInstance() {
@@ -17,9 +17,10 @@ public class DminHandler extends APIHandlerServlet.APIRequestHandler {
 
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
+
         DminService dmin = new DminService();
         JSONObject responseJSON = new JSONObject();
-        String target = request.getParameter("requestType");
+        String target = request.getParameter("requestCase");
 
         switch (target) {
             case "getAllUsers":

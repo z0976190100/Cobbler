@@ -10,5 +10,5 @@ public interface WorkSheetDAO {
     WorkSheet getWSheetById(long id) throws SQLException;
     boolean getIsChekedByOpTagId(String operationTagId)throws SQLException;
     void updateIsChekedByOpTagId(String operationTagId, boolean state, long initiator)throws SQLException;
-    //void updateUser(WorkSheet workSheet, String targetField ) throws SQLException;
+
 }

@@ -13,21 +13,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.daProject.controller.utils.JSONResponses.ERROR_INCORRECT_REQUEST;
-import static com.daProject.dao.entity.Errors.roleIdentifier;
-
-
 
 public class APIHandlerServlet extends HttpServlet {
+
     public abstract static class APIRequestHandler {
-
         protected abstract JSONStreamAware processRequest(HttpServletRequest request) throws Exception;
-
     }
 
-
-
-  private static Map<String, APIRequestHandler> apiRequestHandlers = new HashMap<>();
+    private static Cookie roleIdentifier = new Cookie("roleIdentifier", "none");
+    private static Map<String, APIRequestHandler> apiRequestHandlers = new HashMap<>();
     public static boolean multiplayer = false;
+
     static {
         Map<String, APIRequestHandler> map = new HashMap<>();
 
@@ -53,8 +49,7 @@ public class APIHandlerServlet extends HttpServlet {
         process(req, resp);
     }
 
-
-    public static Map<String, APIRequestHandler> getApiRequestHandlers() {
+    private static Map<String, APIRequestHandler> getApiRequestHandlers() {
         return apiRequestHandlers;
     }
 
@@ -67,49 +62,33 @@ public class APIHandlerServlet extends HttpServlet {
 
         JSONStreamAware response = JSON.emptyJSON;
 
-        HttpSession session = req.getSession();
-
-       Cookie[] cookies = req.getCookies();
-        for (Cookie cook : cookies
-             ) {
-            System.out.println(cook.getName());
-        }
-
-
-
-
-
         try {
             long startTime = System.currentTimeMillis();
-            String requestType = req.getParameter("requestType");
-            System.out.println("get request");
+            String requestCase = req.getParameter("requestCase");
 
-            if (requestType == null) {
+            if (requestCase == null) {
                 response = ERROR_INCORRECT_REQUEST;
                 return;
             }
 
-            APIRequestHandler apiRequestHandler = getApiRequestHandlers().get(requestType);
+            APIRequestHandler apiRequestHandler = getApiRequestHandlers().get(requestCase);
 
             if (apiRequestHandler == null) {
                 response = ERROR_INCORRECT_REQUEST;
-                return ;
+                return;
             }
 
-            System.out.println("Get servlet process");
-           response = apiRequestHandler.processRequest(req);
+            response = apiRequestHandler.processRequest(req);
+
             if (response instanceof JSONObject) {
                 ((JSONObject) response).put("requestProcessingTime", System.currentTimeMillis() - startTime);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            roleIdentifier.setValue(String.valueOf(((JSONObject)response).get("role")));
-            resp.addCookie(roleIdentifier);
             resp.setContentType("text/plain; charset=UTF-8");
             try (Writer writer = resp.getWriter()) {
-                response.writeJSONString(writer);//.append((CharSequence)((JSONObject) response).get("operation_list")));
+                response.writeJSONString(writer);
             }
         }
     }

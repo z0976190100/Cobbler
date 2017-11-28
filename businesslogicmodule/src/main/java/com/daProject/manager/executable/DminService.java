@@ -1,10 +1,7 @@
 package com.daProject.manager.executable;
 
-import com.daProject.dao.UserDAO;
 import com.daProject.dao.entity.User;
 import com.daProject.dao.impl.UserDAOImpl;
-
-import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;

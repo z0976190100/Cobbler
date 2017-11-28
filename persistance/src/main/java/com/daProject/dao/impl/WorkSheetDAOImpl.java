@@ -5,10 +5,8 @@ import com.daProject.dao.entity.WorkSheet;
 import com.daProject.dao.hibernateFactory.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.swing.*;
 import java.sql.SQLException;
-
 import static com.daProject.dao.entity.WorkSheet.workSheetStringGlobalState;
 
 public class WorkSheetDAOImpl implements WorkSheetDAO {
@@ -22,10 +20,10 @@ public class WorkSheetDAOImpl implements WorkSheetDAO {
             session.save(workSheet);
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
-            //MUST be dan
+            JOptionPane.showMessageDialog(null, e.getMessage(),
+                    "Error I/O", JOptionPane.ERROR_MESSAGE);
         } finally {
-            if (session != null & session.isOpen()) {
+            if (session != null && session.isOpen()) {
                 session.close();
             }
         }
@@ -36,8 +34,8 @@ public class WorkSheetDAOImpl implements WorkSheetDAO {
     public WorkSheet getWSheetById(long id) throws SQLException {
         WorkSheet ws = new WorkSheet();
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM WorkSheet WHERE id =:paramId");
-            query.setParameter("paramId", id);
+            Query query = session.createQuery("FROM WorkSheet WHERE id =:clue");
+            query.setParameter("clue", id);
             ws = (WorkSheet) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +46,7 @@ public class WorkSheetDAOImpl implements WorkSheetDAO {
     @Override
     public boolean getIsChekedByOpTagId(String operationTagId) {
 
-       boolean result = workSheetStringGlobalState;
+        boolean result = workSheetStringGlobalState;
         WorkSheet wsTD = null;
         String hql = "FROM WorkSheet WHERE operationTagId =:clue";
 
@@ -60,13 +58,10 @@ public class WorkSheetDAOImpl implements WorkSheetDAO {
             e.printStackTrace();
         }
 
-        try {
-            if (wsTD.getChecked() != null)
-                result = wsTD.getChecked();
-        }catch (NullPointerException e){
-            result = false  ;
+        if (wsTD != null) {
+            return wsTD.getChecked();
         }
-        return result;
+        return false;
     }
 
     @Override

@@ -33,7 +33,7 @@ var dataRequest = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "getTechRouteByModel", article: article},
+            data: {requestCase: "getTechRouteByModel", article: article},
             success: function (data) {
                 loader.off();
                 if (data !== null) {
@@ -64,11 +64,11 @@ var dataRequest = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "techRouteCommit", operationRegister: opReg},
+            data: {requestCase: "techRouteCommit", operationRegister: opReg},
             success: function (data) {
                 // activating input field for next model input
 
-            }
+            }  
 
         });
     },
@@ -79,7 +79,7 @@ var dataRequest = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "getAllTechRoutsArticles"},
+            data: {requestCase: "getAllTechRoutsArticles"},
             success: function (data) {
                 loader.off();
                 var autocompleteArr = [];

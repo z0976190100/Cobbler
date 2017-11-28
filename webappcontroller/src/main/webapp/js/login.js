@@ -95,7 +95,7 @@ var main = {
             url: "/testmaven",
             dataType: "json",
             data: {
-                requestType: "registration",
+                requestCase: "registration",
                 name: nam,
                 surname: surnam,
                 employment: employmen,
@@ -126,7 +126,7 @@ var main = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "auth", phonenumber: phonenumber, secret: secret},//!!!!!!!!!!!!!
+            data: {requestCase: "auth", phonenumber: phonenumber, secret: secret},//!!!!!!!!!!!!!
             success: function (data) {
                 if (data.auth == "fail") {
                     switch (ev) {
@@ -256,7 +256,7 @@ $(function () {
         type: "POST",
         url: "/testmaven",
         dataType: "json",
-        data: {requestType: "dbInit"},
+        data: {requestCase: "dbInit"},
         success: function () {
             loader.off();
             main.changeScene("#first", "#second");
@@ -299,7 +299,7 @@ $(function () {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
+            data: {requestCase: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
 
         });
 
@@ -314,7 +314,7 @@ $(function () {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "state", purpose: "get"},
+            data: {requestCase: "state", purpose: "get"},
             success: function (data) {
                 if(data.syncRequired){
                     contentToSync = data;
@@ -338,7 +338,7 @@ var dminActions = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "getAllUsers"},
+            data: {requestCase: "getAllUsers"},
             success: function (data) {
                 HandlebarsContext = {
                     userLine: []
@@ -358,7 +358,7 @@ var dminActions = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
+            data: {requestCase: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
             complete: function () {
                 document.getElementById("user-table-div").innerHTML = "";
                 dminActions.getAllUsers();

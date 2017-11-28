@@ -1,5 +1,7 @@
-package com.daProject.dao.entity;
 
+//!!!!!!!!!!!!!!!!! UNDER CONSTRUCTION !!!!!!!!!!!!!
+
+package com.daProject.dao.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

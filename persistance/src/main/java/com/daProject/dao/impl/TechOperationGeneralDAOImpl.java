@@ -5,14 +5,13 @@ import com.daProject.dao.entity.TechOperationGeneral;
 import com.daProject.dao.hibernateFactory.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.swing.*;
 import java.sql.SQLException;
 
 public class TechOperationGeneralDAOImpl implements TechOperationGeneralDAO {
 
     @Override
-    public void addTechOperation(TechOperationGeneral to) throws SQLException {
+    public void saveTechOperation(TechOperationGeneral to) throws SQLException {
 
             Session session = null;
             try {
@@ -21,10 +20,10 @@ public class TechOperationGeneralDAOImpl implements TechOperationGeneralDAO {
                 session.save(to);
                 session.getTransaction().commit();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
-                //MUST be dan
+                JOptionPane.showMessageDialog(null, e.getMessage(),
+                        "Error I/O", JOptionPane.ERROR_MESSAGE);
             }finally {
-                if (session != null & session.isOpen()){
+                if (session != null && session.isOpen()){
                     session.close();
                 }
             }
@@ -39,7 +38,6 @@ public class TechOperationGeneralDAOImpl implements TechOperationGeneralDAO {
             tog = (TechOperationGeneral) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
-            //MUST be dan
         }
         return tog;
     }

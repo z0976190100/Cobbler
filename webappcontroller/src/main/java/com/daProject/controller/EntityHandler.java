@@ -6,7 +6,7 @@ import org.json.simple.JSONStreamAware;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
-import static com.daProject.manager.executable.EntityService.dataBaseFiller;
+import static com.daProject.manager.executable.DBInitService.dataBaseInitialise;
 
 public class EntityHandler extends APIHandlerServlet.APIRequestHandler {
 
@@ -20,7 +20,7 @@ public class EntityHandler extends APIHandlerServlet.APIRequestHandler {
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
 
         try {
-            dataBaseFiller();
+            dataBaseInitialise();
         } catch (SQLException e) {
             e.printStackTrace();
         }

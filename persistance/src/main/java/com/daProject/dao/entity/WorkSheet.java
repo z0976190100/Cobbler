@@ -1,15 +1,13 @@
 package com.daProject.dao.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "work_sheet")
 public class WorkSheet extends WorkSheetUnit {
 
-
-public static volatile boolean syncRequired = false;
+    public static volatile boolean syncRequired = false;
     public static volatile boolean workSheetStringGlobalState = false;
 
     @Id

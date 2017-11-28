@@ -14,7 +14,7 @@ $(function () {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
+            data: {requestCase: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
 
         });
 
@@ -29,7 +29,7 @@ console.log("getting....");
         type: "POST",
         url: "/testmaven",
         dataType: "json",
-        data: {requestType: "state", purpose: "get"},
+        data: {requestCase: "state", purpose: "get"},
         success: function (data) {
             if(data.syncRequired){
             contentToSync = data;
@@ -54,7 +54,7 @@ var dminActions = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "getAllUsers"},
+            data: {requestCase: "getAllUsers"},
             success: function (data) {
                 HandlebarsContext = {
                     userLine: []
@@ -74,7 +74,7 @@ var dminActions = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestType: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
+            data: {requestCase: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
             complete: function () {
                 document.getElementById("user-table-div").innerHTML = "";
                 dminActions.getAllUsers();

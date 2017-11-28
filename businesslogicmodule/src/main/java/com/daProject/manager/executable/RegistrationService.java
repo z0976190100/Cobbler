@@ -4,7 +4,6 @@ import com.daProject.dao.entity.User;
 import com.daProject.dao.hibernateFactory.Factory;
 import com.daProject.dao.impl.UserDAOImpl;
 import org.json.simple.JSONObject;
-
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,9 +12,9 @@ public class RegistrationService {
 
     private boolean validationAct(HttpServletRequest request) throws SQLException {
 
+        boolean check = true;
         UserDAOImpl userDAOImpl = new UserDAOImpl();
         JSONObject validationResult = new JSONObject();
-        boolean check = true;
         List<User> users = userDAOImpl.getAllUsers();
 
         for (User user : users) {
@@ -24,15 +23,14 @@ public class RegistrationService {
                 validationResult.put("phonenumber", false);
                 check = false;
             }
+
             if (user.getPassword().equals(request.getParameter("secret"))) {
                 validationResult.put("secret", false);
                 check = false;
             }
-
         }
         validationResult.put("phonenumber", true);
         validationResult.put("secret", true);
-
 
         return check;
     }
@@ -56,5 +54,4 @@ public class RegistrationService {
         }
         return registrationResponse;
     }
-
 }

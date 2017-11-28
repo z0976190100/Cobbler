@@ -5,7 +5,6 @@ import com.daProject.dao.TechRouteDAO;
 import com.daProject.dao.hibernateFactory.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,10 +21,10 @@ public class TechRouteDAOImpl implements TechRouteDAO {
             session.save(tr);
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
-            //MUST be dan
+            JOptionPane.showMessageDialog(null, e.getMessage(),
+                    "Error I/O", JOptionPane.ERROR_MESSAGE);
         }finally {
-            if (session != null & session.isOpen()){
+            if (session != null && session.isOpen()){
                 session.close();
             }
         }
@@ -33,7 +32,9 @@ public class TechRouteDAOImpl implements TechRouteDAO {
 
     @Override
     public String getOpsListByModelArt(String modelArt) {
-        TechRoute tr  = null;
+
+        TechRoute tr = null;
+
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery(" FROM TechRoute WHERE modelArt =:param");
             query.setParameter("param", modelArt);
@@ -41,13 +42,18 @@ public class TechRouteDAOImpl implements TechRouteDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return tr.getOpsList();
+
+        if(tr != null) return tr.getOpsList();
+
+        return null;
     }
 
 
     @Override
     public List<TechRoute> getAllTechRoutsArticles() throws SQLException {
+
         List<TechRoute> allArts = new ArrayList<>();
+
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery("from TechRoute");
             allArts = query.list();

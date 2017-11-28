@@ -1,14 +1,11 @@
 package com.daProject.dao.hibernateFactory;
 
-
 import com.daProject.dao.*;
-import com.daProject.dao.entity.TechOperationGeneral;
 import com.daProject.dao.impl.*;
 
 public class Factory {
 
     private static UserDAO userDAO = null;
-    private static ValiDataDAO valiDataDAO = null;
     private static TechOperationGeneralDAO tODAO = null;
     private static TechRouteDAO tRDAO = null;
    // private static TOpsTRoutsDAO totsDAO = null;
@@ -57,16 +54,6 @@ public WorkSheetDAO getWorkSheetDAO(){
         workSheetDAO =new WorkSheetDAOImpl();
         }
         return workSheetDAO;
-    }
-
-
-
-
-    public ValiDataDAO getValiDataDAO() {
-        if (valiDataDAO == null) {
-            valiDataDAO = new ValiDataDAOImpl();
-        }
-        return valiDataDAO;
     }
 }
 
