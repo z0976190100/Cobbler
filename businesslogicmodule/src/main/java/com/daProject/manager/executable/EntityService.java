@@ -22,6 +22,7 @@ public class EntityService {
 
         User dmin = new User();
         dmin.setFirstName("Сергей");
+        dmin.setSurName("Бурцев");
         dmin.setPhoneNumber("+380976190100");
         dmin.setPassword("zhst");
         dmin.setRole("admin");

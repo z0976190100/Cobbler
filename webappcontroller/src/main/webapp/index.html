@@ -4,28 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="jquery/jquery-3.2.1.slim.min.js"></script>
+    <script src="jquery/jquery-1.12.4.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap4.min.css"/>
 
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="jquery/jquery-3.2.1.min.js"></script>
+    <script src="jquery/jquery.flip.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <!--<script src="jquery/jquery.min.js"></script>-->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="css/login.css" rel="stylesheet" type="text/css"/>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="jquery/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery/css/jquery-ui.css"/>
 
     <title>onepage</title>
 </head>
@@ -188,7 +181,7 @@
 <!--<div class="login-screen"></div>-->
 <div class="scene" id="second">
     <script id="tech-route-template" type="text/x-handlebars-template">
-        <div class="clearfix col-md-3 col-md-auto pt-md-2 pt-xl-2 pt-2" id="td">
+        <div class="clearfix col-md-3 col-md-auto pt-2" id="td">
             <div id="tech-route-div" style="width: 270px; !important;" class="login-form input-group form-control">
                 <p>Наряд No:</p>
                 <p>Дата:</p>
@@ -206,8 +199,7 @@
         <input type="button"
                class="btn btn-cyan"
                onclick="dataRequest.techRouteComitment()"
-               value="Провести"/>
-                        <p>    </p>
+               value="Провести"/> <p>  </p>
                         <input type="button"
                                class="btn btn-cyan"
                                onclick="dataRequest.techRouteCancel()"
@@ -285,12 +277,7 @@
                 </div>
                 <div class="container">
                     <div class="row" id="tech-route">
-
-                        <!--<table id="tr">-->
-                        <!--<tr id="tech-route"></tr>-->
-                        <!--
-                                        </table>
-                        --></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -302,7 +289,7 @@
             <div class="row align-items-center">
                 <div class="col-xs-1 col-md-offset-0">
                     <div class="login" id="card3">
-                        <div class="front signin_form">
+                        <div class="front signin_form login-form form-group input-group">
                             <script id="users-table-template" type="text/x-handlebars-template">
                                 <div>
                                     <table>
@@ -310,7 +297,7 @@
                                         <tr>
                                             <td>{{userSurname}}</td>
                                             <td>{{userId}}</td>
-                                            <td><input type="button" class="btn btn-cyan"
+                                            <td><input type="button" class="form-control btn btn-cyan"
                                                        onclick="dminActions.destroyUser(event)" name="{{userId}}"
                                                        value="Destroy {{userSurname}}"></td>
                                         </tr>
@@ -322,13 +309,13 @@
                             <p>gwgsaui</p>
                             <form class="login-form">
                                 <div class="form-group">
-                                    <div id="m3" class="input-group">
-                                        <input type="button" onclick="dminActions.getAllUsers()" class="form-control"
+                                    <div id="m3" class="login-form input-group form-control">
+
+                                        <input type="button" onclick="dminActions.getAllUsers()"
+                                               class="form-control btn btn-cyan"
                                                name="get-all-users" value="Get all users">
-                                        <span class="input-group-addon">
-                                          <i class="glyphicon glyphicon-search"></i>
-                                      </span>
-                                        <div id="user-table-div">
+                                        <span></span>
+                                        <div id="user-table-div" class="login-form input-group form-control">
 
                                         </div>
 
@@ -338,21 +325,46 @@
                         </div>
                     </div>
                 </div>
+                <!--<div class="col-md-6 push-md-6">
+                    <div class="navibar">
+                        <p id="hello">Добрый день,</p>
+                        <div id="navbar">
+                            <div id="inhamburger">
+                                <input id="exit2" class="btn btn-cyan inhamburger" type="button" value="Выйти"
+                                       onclick="main.log_out()">
+                                <input id="dmin-button2" class="btn btn-cyan inhamburger" type="button" value="Сервис"
+                                       onclick="main.changeScene('#dmin','#second');">
+                                <input id="exit3" class="btn btn-cyan inhamburger" type="button" value="Наряд"
+                                       onclick="main.changeScene('#second', '#dmin')">
+                                <input id="exit4" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                                <input id="exit5" class="btn btn-cyan inhamburger" type="button" value="___"
+                                       onclick="main.log_out()">
+                            </div>
+                            <input type="checkbox" id="toggle-menu" class="toggle-menu" name="">
+                            <label for="toggle-menu">
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar invisible"></span>
+                                <span class="menu-bar invisible"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>-->
                 <div>
 
                 </div>
 
-                <input id="multiplayer-check" type="checkbox" value="this is it">
 
             </div>
         </div>
     </div>
 </div>
-</div>
 <script src="js/handlebars-v4.0.11.js"></script>
 <script src="js/dmin-page.js"></script>
 <script src="js/working-try1.js"></script>
 <script src="js/login.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+<script src="jquery/jquery_alt.flip.js"></script>
 </body>
 </html>

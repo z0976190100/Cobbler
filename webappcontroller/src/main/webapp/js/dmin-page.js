@@ -5,6 +5,7 @@ var contentToSync = [
 ];
 
 
+/*
 $(function () {
     $(".multiuser-syncronized-checkboxes").on("click", function (event) {
         localState = $(event.target.id).is(":checked");
@@ -33,14 +34,15 @@ console.log("getting....");
             if(data.syncRequired){
             contentToSync = data;
             main.contentSyncronization(data);}
-            /*console.log("now global state is " + globalState);
-            $("#multiplayer-check").prop("checked", globalState);*/
+            /!*console.log("now global state is " + globalState);
+            $("#multiplayer-check").prop("checked", globalState);*!/
         }
 
     });
         });
 
     });
+*/
 
 var HandlebarsContext = {
     userLine: []
@@ -57,12 +59,12 @@ var dminActions = {
                 HandlebarsContext = {
                     userLine: []
                 };
-                for (var key in data) {
+                for (key in data) {
                     if (key !== "requestProcessingTime")
                         HandlebarsContext.userLine.push({userId: key, userSurname: data[key]});
                     console.log(HandlebarsContext.userLine);
                 }
-                gogoHandlebars();
+                gogoHandlebarss();
             }
         });
     },
@@ -87,7 +89,7 @@ var responseParser = function (json) {
 
 };
 
-var gogoHandlebars = function () {
+var gogoHandlebarss = function () {
 
     var templToCompile = document.getElementById("users-table-template").innerHTML;
 

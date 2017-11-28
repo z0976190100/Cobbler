@@ -1,7 +1,12 @@
 //database initialisation
 var currentUser;
 var currentRole;
-
+var currentUserId;
+var localState;
+var globalState;
+var contentToSync = [
+    {target: "", localState: "", globalState: ""}
+];
 
 var loader = {
     on: function () {
@@ -51,14 +56,15 @@ var main = {
     },
 
     registrationLocal: function () {
-        var reg = new Object();
-        reg.name = "#name_input";
-        reg.surname = "#surname_input";
-        reg.employment = "#employment_input";
-        reg.role = "#role_input";
-        reg.phonenumber = "#phonenumber_input";
-        reg.secret1 = "#secret1_input";
-        reg.secret2 = "#secret2_input";
+        var reg = {
+            name: "#name_input",
+            surname: "#surname_input",
+            employment: "#employment_input",
+            role: "#role_input",
+            phonenumber: "#phonenumber_input",
+            secret1: "#secret1_input",
+            secret2: "#secret2_input"
+        }
 
         var mist = false;
 
@@ -132,12 +138,14 @@ var main = {
                             return false;
                     }
                 } else {
+                    currentUserId = data.id;
                     currentUser = data.firstName;
                     currentRole = data.role;
                     document.cookie = "user=" + currentUser;
-                    document.cookie = "user=" + currentRole;
+                    document.cookie = "role=" + currentRole;
+                    document.cookie = "id=" + currentUserId;
                     document.cookie = "authStatus=" + "true";
-                    document.getElementById("hello").innerHTML = ("Добрый день, "+ currentUser);
+                    document.getElementById("hello").innerHTML = ("Добрый день, " + currentUser);
                     switch (ev) {
                         case "log-in-btn":
                             main.changeScene("#second", "#first");
@@ -163,21 +171,16 @@ var main = {
     },
 
     roleActions: function (data) {
-switch (data){
-    case "admin":
-        return;
-    case "superuser":
-        return;
-    case "user":
-        console.log("role user");
-        $("#dmin-button").prop("disabled", "true");
-        return;
-}
-
-
-
-
-
+        switch (data) {
+            case "admin":
+                return;
+            case "superuser":
+                return;
+            case "user":
+                console.log("role user");
+                $("#dmin-button").prop("disabled", "true");
+                return;
+        }
 
 
     },
@@ -274,8 +277,110 @@ $(function () {
     $(".toggle-menu").on("click", function () {
         var tagState = $("#toggle-menu").is(":checked");
         console.log(tagState);
-        if(tagState) {$("#inhamburger").css("visibility", "visible");}
-        else{$("#inhamburger").css("visibility", "hidden");}
+        if (tagState) {
+            $("#inhamburger").css("visibility", "visible");
+        }
+        else {
+            $("#inhamburger").css("visibility", "hidden");
+        }
     })
 
-})
+});
+
+
+
+/*
+
+$(function () {
+    $(".multiuser-syncronized-checkboxes").on("click", function (event) {
+        localState = $(event.target.id).is(":checked");
+        console.log("local state is " + localState);
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "state", localState: localState, initiator: currentUserId } //String opTagId, boolean state, long init
+
+        });
+
+    });
+});
+
+
+$(function () {
+    $("html").on("mousemove", function () {
+        console.log("getting....");
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "state", purpose: "get"},
+            success: function (data) {
+                if(data.syncRequired){
+                    contentToSync = data;
+                    main.contentSyncronization(data);}
+                /!*console.log("now global state is " + globalState);
+                $("#multiplayer-check").prop("checked", globalState);*!/
+            }
+
+        });
+    });
+
+});
+
+var HandlebarsContext = {
+    userLine: []
+};
+
+var dminActions = {
+    getAllUsers: function () {
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "getAllUsers"},
+            success: function (data) {
+                HandlebarsContext = {
+                    userLine: []
+                };
+                for (var key in data) {
+                    if (key !== "requestProcessingTime")
+                        HandlebarsContext.userLine.push({userId: key, userSurname: data[key]});
+                    console.log(HandlebarsContext.userLine);
+                }
+                gogoHandlebars();
+            }
+        });
+    },
+    destroyUser: function (event) {
+        var andNowUserIdToDestroyIiiiis = event.target.name;
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestType: "destroyUser", userIdTD: andNowUserIdToDestroyIiiiis},
+            complete: function () {
+                document.getElementById("user-table-div").innerHTML = "";
+                dminActions.getAllUsers();
+            }
+        });
+    }
+};
+
+
+var responseParser = function (json) {
+
+
+};
+
+var gogoHandlebars = function () {
+
+    var templToCompile = document.getElementById("users-table-template").innerHTML;
+
+    var templCompiled = Handlebars.compile(templToCompile);
+
+    var insertingData = templCompiled(HandlebarsContext);
+
+
+    document.getElementById("user-table-div").innerHTML += insertingData;
+};*/

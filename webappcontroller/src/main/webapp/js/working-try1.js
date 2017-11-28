@@ -15,7 +15,7 @@ var techRouteHandlebarsContext = {
     modelArt: "",
     listLines: []
 
-}
+};
 
 var operationRegister = [];
 
