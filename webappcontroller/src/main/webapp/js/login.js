@@ -122,6 +122,7 @@ var main = {
         var secret = $("#secret-input-auth").val();
         var phonenumber = $("#login-input-auth").val();
         console.log("log" + phonenumber + " pass " + secret);
+        loader.on();
         $.ajax({
             type: "POST",
             url: "/testmaven",
@@ -131,9 +132,11 @@ var main = {
                 if (data.auth == "fail") {
                     switch (ev) {
                         case "log-in-btn":
+                            loader.off();
                             alert('Неверные данные.');
                             return false;
                         case "flip-btn1":
+                            loader.off();
                             alert('Войдите как Администратор.');
                             return false;
                     }
@@ -148,13 +151,14 @@ var main = {
                     document.getElementById("hello").innerHTML = ("Добрый день, " + currentUser);
                     switch (ev) {
                         case "log-in-btn":
+                            loader.off();
                             main.changeScene("#second", "#first");
                             main.roleActions(currentRole);
                             return true;
                         case "flip-btn1":
                             if (currentRole == "admin") {
                                 main.flip();
-                                return true;
+                                return;
                             }
                             alert('Войдите как Администратор.');
                             return true;
@@ -228,20 +232,20 @@ var main = {
     $(".name_input").css("border-color", "#6600cc");
 });*/
 //  flip action
+/*
 $(function () {
-    $("#flip-btn").click(function () {
-
-        $(".signin_form").css('opacity', '0');
-        $(".signup_form").css('opacity', '100');
-        $("#card").flip(true);
-
-        return false;
-    });
+    $("#flip-btn").click(main.flip());
 
     $("#unflip-btn").click(main.unflip());
 });
+*/
 
 $(function () {
+
+    $("#card").flip({
+        trigger: 'manual'
+    });
+    $("#flip-btn").prop("disabled", false);
 
     loader.on();
     // check coockies if alredy logged in
@@ -260,10 +264,6 @@ $(function () {
         success: function () {
             loader.off();
             main.changeScene("#first", "#second");
-            $("#card").flip({
-                trigger: 'manual'
-            });
-            $("#flip-btn").prop("disabled", false);
         },
         error: function () {
             alert("Press F5 button or Refresh page");
@@ -286,7 +286,6 @@ $(function () {
     })
 
 });
-
 
 
 /*

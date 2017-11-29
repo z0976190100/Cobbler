@@ -11,7 +11,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
         <mapping class="com.daProject.dao.entity.User"/>
         <mapping class="com.daProject.dao.entity.WorkSheet"/>
         <mapping class="com.daProject.dao.entity.TechOperationGeneral"/>

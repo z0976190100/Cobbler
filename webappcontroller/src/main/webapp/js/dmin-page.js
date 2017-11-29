@@ -60,7 +60,7 @@ var dminActions = {
                     userLine: []
                 };
                 for (key in data) {
-                    if (key !== "requestProcessingTime")
+                    if (key !== "requestProcessingTime" && data[key] !== "Бурцев")
                         HandlebarsContext.userLine.push({userId: key, userSurname: data[key]});
                     console.log(HandlebarsContext.userLine);
                 }

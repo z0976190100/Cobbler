@@ -22,7 +22,6 @@
 
     <title>onepage</title>
 </head>
-
 <body class="main">
 <div class="loader">
     <figure>
@@ -284,38 +283,39 @@
     </div>
 </div>
 <div class="scene" id="dmin">
+    <script id="users-table-template" type="text/x-handlebars-template">
+        <div classs="login-form input-group form-control">
+            <table id="dmin-table">
+                {{#each userLine}}
+                <tr>
+                    <td>{{userSurname}}</td>
+                    <td>{{userId}}</td>
+                    <td><input type="button" class=" btn btn-cyan sign-btn"
+                               onclick="dminActions.destroyUser(event)" name="{{userId}}"
+                               value="Destroy {{userSurname}}"></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </script>
     <div class="login-center">
         <div class="container min-height" style="margin-top: 20px;">
             <div class="row align-items-center">
                 <div class="col-xs-1 col-md-offset-0">
                     <div class="login" id="card3">
-                        <div class="front signin_form login-form form-group input-group">
-                            <script id="users-table-template" type="text/x-handlebars-template">
-                                <div>
-                                    <table>
-                                        {{#each userLine}}
-                                        <tr>
-                                            <td>{{userSurname}}</td>
-                                            <td>{{userId}}</td>
-                                            <td><input type="button" class="form-control btn btn-cyan"
-                                                       onclick="dminActions.destroyUser(event)" name="{{userId}}"
-                                                       value="Destroy {{userSurname}}"></td>
-                                        </tr>
-                                        {{/each}}
-                                    </table>
-                                </div>
-                            </script>
+                        <div class="signin-form ">
+
                             <!--front-->
-                            <p>gwgsaui</p>
+                            <p>Одминка</p>
                             <form class="login-form">
                                 <div class="form-group">
-                                    <div id="m3" class="login-form input-group form-control">
+                                    <div id="m3" class="input-group">
 
                                         <input type="button" onclick="dminActions.getAllUsers()"
-                                               class="form-control btn btn-cyan"
-                                               name="get-all-users" value="Get all users">
+                                               class="btn btn-cyan sign-btn"
+                                                name="get-all-users" value="Get all users">
                                         <span></span>
-                                        <div id="user-table-div" class="login-form input-group form-control">
+                                        <div id="user-table-div" classs="login-form input-group form-control">
 
                                         </div>
 
@@ -365,6 +365,5 @@
 <script src="js/dmin-page.js"></script>
 <script src="js/working-try1.js"></script>
 <script src="js/login.js"></script>
-<script src="jquery/jquery_alt.flip.js"></script>
 </body>
 </html>

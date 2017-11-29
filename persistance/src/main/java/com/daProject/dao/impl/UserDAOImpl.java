@@ -12,12 +12,10 @@ import java.util.List;
 
 import static com.daProject.dao.entity.Errors.errorMessage;
 
-
-
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public void saveUser(User user) throws SQLException {
+    public void saveUser(User user) throws SQLException {  // add chekcing of uniqueness by phonenum
         Session session = null;
         try {
             session = HibernateSessionFactory.getSessionFactory().openSession();
@@ -27,7 +25,6 @@ public class UserDAOImpl implements UserDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(),
                     "Error I/O", JOptionPane.ERROR_MESSAGE);
-            //MUST be dan
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

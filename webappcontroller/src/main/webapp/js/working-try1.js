@@ -1,3 +1,5 @@
+var modelArtMap;
+
 $(function () {
     $(".glyphicon").on("mouseover", function () {
         $(".glyphicon").css("color", "white");
@@ -26,26 +28,32 @@ var dataRequest = {
         event.preventDefault();
         event.stopPropagation();
         var article = $("#all-tech-route-select").val();
-        // document.cookie = "username=admin";
-        loader.on();
-        console.log(article);
-        $.ajax({
-            type: "POST",
-            url: "/testmaven",
-            dataType: "json",
-            data: {requestCase: "getTechRouteByModel", article: article},
-            success: function (data) {
-                loader.off();
-                if (data !== null) {
+        for (var key in modelArtMap) {
+            console.log(modelArtMap[key]);
+            if (modelArtMap[key] === article) {
+                loader.on();
+                console.log(article);
+                $.ajax({
+                    type: "POST",
+                    url: "/testmaven",
+                    dataType: "json",
+                    data: {requestCase: "getTechRouteByModel", article: article},
+                    success: function (data) {
+                        loader.off();
+                        if (data !== null) {
 
-                    console.log(data.operation_list);
-                    responseHandler.responseParser(data.operation_list, article);
-                }
+                            console.log(data.operation_list);
+                            responseHandler.responseParser(data.operation_list, article);
+                        }
+                    }
+                });
+                return true;
             }
-
-        });
-
+        }
+        alert("Несуществующий артикул.");
+        return false;
     },
+
     operationCheked: function (event) {
         console.log(event.target.id);
         var ev = "#" + event.target.id;
@@ -68,7 +76,7 @@ var dataRequest = {
             success: function (data) {
                 // activating input field for next model input
 
-            }  
+            }
 
         });
     },
@@ -87,25 +95,28 @@ var dataRequest = {
                 for (var key in data) {
                     if (key !== "requestProcessingTime") {
                         modelArtMap = data;
-                        autocompleteArr[count]=(data[key]);
+                        autocompleteArr[count] = (data[key]);
                         count++;
                     }
                     console.log(autocompleteArr);
 
-                   $(function () {
+                    $(function () {
 
-                    $("#all-tech-route-select").autocomplete({
+                        $("#all-tech-route-select").autocomplete({
                             source: autocompleteArr
                         });
-                   })
+                    })
 
-                    }
                 }
+            },
+            error: function () {
+                alert("Press F5 button or Refresh page");
+            }
 
         });
 
     }
-}
+};
 
 /*
 function TechRouteObj() {

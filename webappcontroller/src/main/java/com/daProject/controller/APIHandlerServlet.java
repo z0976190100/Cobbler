@@ -80,9 +80,9 @@ public class APIHandlerServlet extends HttpServlet {
 
             response = apiRequestHandler.processRequest(req);
 
-            if (response instanceof JSONObject) {
+           /* if (response instanceof JSONObject) {
                 ((JSONObject) response).put("requestProcessingTime", System.currentTimeMillis() - startTime);
-            }
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
