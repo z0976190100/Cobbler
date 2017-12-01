@@ -24,6 +24,8 @@ public class User {
     private String employment;
     @Column(name = "role")
     private String role;
+    @Column (name = "logged")
+    private boolean logged;
 
     public User() {}
 
@@ -64,6 +66,13 @@ public class User {
         this.role = role;
     }
 
+    public boolean isLogged() {
+        return logged;
+    }
+
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
 }
 
 

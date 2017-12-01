@@ -163,7 +163,7 @@
                                            onclick="main.registrationLocal()"
                                            value="Добавить пользователя">
                                     <br><br>
-                                    <input onclick="location.href='dmin-page.html'"
+                                    <input onclick="main.unflip();"
                                            id="unflip-btn"
                                            class="btn btn-cyan signup"
                                            value="Войти"/>
@@ -249,7 +249,7 @@
                 </div>
                 <div class="col-md-6 push-md-6">
                     <div class="navibar">
-                        <p id="hello">Добрый день,</p>
+                        <p id="hello"><script>main.helloString()</script></p>
                         <div id="navbar">
                             <div id="inhamburger">
                                 <input id="exit" class="btn btn-cyan inhamburger" type="button" value="Выйти"

@@ -19,7 +19,7 @@ public class EntityHandler extends APIHandlerServlet.APIRequestHandler {
     @Override
     protected JSONStreamAware processRequest(HttpServletRequest request) throws Exception {
 
-       /* try {
+        /*try {
             dataBaseInitialise();
         } catch (SQLException e) {
             e.printStackTrace();

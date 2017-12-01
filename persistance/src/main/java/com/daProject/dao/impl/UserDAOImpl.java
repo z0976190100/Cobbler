@@ -15,7 +15,7 @@ import static com.daProject.dao.entity.Errors.errorMessage;
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public void saveUser(User user) throws SQLException {  // add chekcing of uniqueness by phonenum
+    public void saveUser(User user) throws SQLException {  // add checking of uniqueness by phonenum
         Session session = null;
         try {
             session = HibernateSessionFactory.getSessionFactory().openSession();

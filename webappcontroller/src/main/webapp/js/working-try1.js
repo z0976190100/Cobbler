@@ -1,26 +1,10 @@
 var modelArtMap;
-
-$(function () {
-    $(".glyphicon").on("mouseover", function () {
-        $(".glyphicon").css("color", "white");
-        $(".glyphicon").css("cursor", "hand");
-    });
-
-    $(".glyphicon").mouseleave(function () {
-        $(".glyphicon").css("color", "#6600cc");
-    });
-
-});
-
-
 var techRouteHandlebarsContext = {
     modelArt: "",
     listLines: []
-
 };
 
 var operationRegister = [];
-
 var tableCellId = 1;
 
 var dataRequest = {
@@ -77,7 +61,6 @@ var dataRequest = {
                 // activating input field for next model input
 
             }
-
         });
     },
 
@@ -101,20 +84,16 @@ var dataRequest = {
                     console.log(autocompleteArr);
 
                     $(function () {
-
                         $("#all-tech-route-select").autocomplete({
                             source: autocompleteArr
                         });
                     })
-
                 }
             },
             error: function () {
                 alert("Press F5 button or Refresh page");
             }
-
         });
-
     }
 };
 
@@ -152,21 +131,12 @@ var responseHandler = {
         gogoHandlebars("tech-route");
         techRouteHandlebarsContext.listLines = [];
     }
-
 };
 
-
 var gogoHandlebars = function (target) {
-
     var handlebarsAct = function (target, templateId) {
-
-
         var templToCompile = document.getElementById(templateId).innerHTML;
-
-        console.log(templToCompile);
-
         var templCompiled = Handlebars.compile(templToCompile);
-
         var insertingData = templCompiled(techRouteHandlebarsContext);
 
         document.getElementById(target).innerHTML += insertingData;
@@ -185,17 +155,5 @@ var gogoHandlebars = function (target) {
             break;
         default:
             console.log("no hendelbars handler yep...");
-    }
-
-
-};
-var loader = {
-    on: function () {
-        $(".loader").css("display", "block");
-        $("html body").css("background", "#6600cc");
-    },
-    off: function () {
-        $(".loader").css("display", "none");
-        $("html body").css("background", "rgba(0,0,0,0)");
     }
 };

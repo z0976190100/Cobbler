@@ -64,7 +64,7 @@ var main = {
             phonenumber: "#phonenumber_input",
             secret1: "#secret1_input",
             secret2: "#secret2_input"
-        }
+        };
 
         var mist = false;
 
@@ -105,7 +105,7 @@ var main = {
             },
             success: function (data) {
                 if (data.registration == "win") {
-                    console.log("registration win")
+                    console.log("registration win");
                     main.unflip();
                     alert("Учетная запись создана. Войдите с новыми учетными данными.");
                     return;
@@ -115,7 +115,6 @@ var main = {
             }
         })
     },
-
 
     log_in: function (event) {
         var ev = event.target.id;
@@ -127,7 +126,7 @@ var main = {
             type: "POST",
             url: "/testmaven",
             dataType: "json",
-            data: {requestCase: "auth", phonenumber: phonenumber, secret: secret},//!!!!!!!!!!!!!
+            data: {requestCase: "auth", case: "login", phonenumber: phonenumber, secret: secret},
             success: function (data) {
                 if (data.auth == "fail") {
                     switch (ev) {
@@ -147,8 +146,9 @@ var main = {
                     document.cookie = "user=" + currentUser;
                     document.cookie = "role=" + currentRole;
                     document.cookie = "id=" + currentUserId;
+                    document.cookie = "pn=" + phonenumber;
                     document.cookie = "authStatus=" + "true";
-                    document.getElementById("hello").innerHTML = ("Добрый день, " + currentUser);
+                    main.helloString();
                     switch (ev) {
                         case "log-in-btn":
                             loader.off();
@@ -157,9 +157,11 @@ var main = {
                             return true;
                         case "flip-btn1":
                             if (currentRole == "admin") {
+                                loader.off();
                                 main.flip();
                                 return;
                             }
+                            loader.off();
                             alert('Войдите как Администратор.');
                             return true;
                     }
@@ -169,9 +171,27 @@ var main = {
         });
     },
 
+    helloString : function () {
+        document.getElementById("hello").innerHTML = ("Добрый день, " + main.getCookie("user"));
+    },
+
     log_out: function () {
-        document.cookie = "authStatus=" + "false";
-        main.changeScene("#first", "#second");
+        loader.on();
+      var phonenumber = main.getCookie("pn");
+        console.log(phonenumber);
+        $.ajax({
+            type: "POST",
+            url: "/testmaven",
+            dataType: "json",
+            data: {requestCase: "auth", case: "logout", phonenumber: phonenumber },
+            success: function (data) {
+                console.log(data.auth);
+                document.cookie = "authStatus=" + "false";
+                loader.off();
+                main.changeScene("#first", "#second");
+            }
+
+        })
     },
 
     roleActions: function (data) {
@@ -179,6 +199,8 @@ var main = {
             case "admin":
                 return;
             case "superuser":
+                console.log("role user");
+                $("#dmin-button").prop("disabled", "true");
                 return;
             case "user":
                 console.log("role user");
@@ -224,24 +246,33 @@ var main = {
         }
         return "";
     }
-
-
 };
-// to remove red border fom wrong input field
-/*$(".name_input").focus(function () {
-    $(".name_input").css("border-color", "#6600cc");
-});*/
-//  flip action
-/*
-$(function () {
-    $("#flip-btn").click(main.flip());
 
-    $("#unflip-btn").click(main.unflip());
-});
-*/
-
+// onload initialisations
 $(function () {
 
+    $(".glyphicon").on("mouseover", function () {
+        $(".glyphicon").css("color", "white");
+        $(".glyphicon").css("cursor", "hand");
+    });
+
+    $(".glyphicon").mouseleave(function () {
+        $(".glyphicon").css("color", "#6600cc");
+    });
+
+    // hamburger menu setting
+    $(".toggle-menu").on("click", function () {
+        var tagState = $("#toggle-menu").is(":checked");
+        console.log(tagState);
+        if (tagState) {
+            $("#inhamburger").css("visibility", "visible");
+        }
+        else {
+            $("#inhamburger").css("visibility", "hidden");
+        }
+    });
+
+// jquery flip setting
     $("#card").flip({
         trigger: 'manual'
     });
@@ -252,7 +283,6 @@ $(function () {
     if (main.getCookie("authStatus") == "true") {
         main.changeScene("#second", "#first");
         loader.off();
-        //  document.cookie = "authStatus=false";
         return;
     }
 
@@ -269,22 +299,6 @@ $(function () {
             alert("Press F5 button or Refresh page");
         }
     });
-    // main.changeScene("#first", "#second");
-    //document.cookie = "authStatus=true";
-});
-
-$(function () {
-    $(".toggle-menu").on("click", function () {
-        var tagState = $("#toggle-menu").is(":checked");
-        console.log(tagState);
-        if (tagState) {
-            $("#inhamburger").css("visibility", "visible");
-        }
-        else {
-            $("#inhamburger").css("visibility", "hidden");
-        }
-    })
-
 });
 
 

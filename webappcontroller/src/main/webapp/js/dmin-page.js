@@ -1,10 +1,3 @@
-var localState;
-var globalState;
-var contentToSync = [
-    {target: "", localState: "", globalState: ""}
-];
-
-
 /*
 $(function () {
     $(".multiuser-syncronized-checkboxes").on("click", function (event) {
@@ -81,12 +74,6 @@ var dminActions = {
             }
         });
     }
-};
-
-
-var responseParser = function (json) {
-
-
 };
 
 var gogoHandlebarss = function () {

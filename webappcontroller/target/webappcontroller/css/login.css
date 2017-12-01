@@ -363,3 +363,16 @@ label[for="toggle-menu"]{
 #bolla-buttons-div {
     display: inline;
 }
+
+#user-table-div {
+    width: auto;
+    margin-top: 20px;
+}
+
+#dmin-table {
+    border: solid;
+    border-color: white;
+    border-collapse: separate;
+    border-spacing: 10px;
+
+}
