@@ -23,12 +23,16 @@ var dataRequest = {
                     dataType: "json",
                     data: {requestCase: "getTechRouteByModel", article: article},
                     success: function (data) {
-                        loader.off();
+
                         if (data !== null) {
 
                             console.log(data.operation_list);
-                            responseHandler.responseParser(data.operation_list, article);
+                            contentManager.workSheetList.push(data.operation_list);
+                            document.getElementById("tech-route").innerHTML = "";
+                            contentManager.workSheetOutput();
+
                         }
+                        loader.off();
                     }
                 });
                 return true;
@@ -65,7 +69,7 @@ var dataRequest = {
     },
 
     getAllTechRoutsArticles: function () {
-        loader.on()
+        loader.on();
         $.ajax({
             type: "POST",
             url: "/testmaven",
@@ -97,18 +101,17 @@ var dataRequest = {
     }
 };
 
-/*
-function TechRouteObj() {
-    this.trcount = 1;
-    this.opcount = 1;
-    this.techRouteHandlebarsContext = {
-        routeFormId: "tech-route"+ this.trcount,
-        inputBody: "<input onclick =\"dataRequest.operationCheked(event)\" name=\"operation"+ this.opcount+"\" type=\"checkbox\">",
-        labelBody: []
+var contentManager = {
+    workSheetList: [],
+    workSheetOutput: function () {
+        if (contentManager.workSheetList !== []) {
+            for (var i = 0; i < contentManager.workSheetList.length; i++){
+                responseHandler.responseParser(contentManager.workSheetList[i], i);
 
+            }
+        }
     }
-}
-*/
+};
 
 var responseHandler = {
 

@@ -14,5 +14,6 @@ public abstract class WorkSheetUnit {
     long operationId;
     Boolean isChecked;
     long checkerId; // id of user who checked current operation
+    long buttonTagId; // add fields for tags id for every tag in worksheet html
 
 }
