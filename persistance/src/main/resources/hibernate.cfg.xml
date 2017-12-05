@@ -16,8 +16,8 @@
         <mapping class="com.daProject.dao.entity.WorkSheet"/>
         <mapping class="com.daProject.dao.entity.TechOperationGeneral"/>
         <mapping class="com.daProject.dao.entity.TechRoute"/>
-        <!--<mapping class="com.daProject.dao.entity.TOpsTRouts" />
--->
+        <mapping class="com.daProject.dao.entity.WSStateKeeper" />
+
 
     </session-factory>
 </hibernate-configuration>

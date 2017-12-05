@@ -1,6 +1,7 @@
 package com.daProject.dao.hibernateFactory;
 
 import com.daProject.dao.*;
+import com.daProject.dao.entity.WSStateKeeper;
 import com.daProject.dao.impl.*;
 
 public class Factory {
@@ -8,9 +9,10 @@ public class Factory {
     private static UserDAO userDAO = null;
     private static TechOperationGeneralDAO tODAO = null;
     private static TechRouteDAO tRDAO = null;
-   // private static TOpsTRoutsDAO totsDAO = null;
+    // private static TOpsTRoutsDAO totsDAO = null;
     private static Factory instance = null;
     private static WorkSheetDAO workSheetDAO = null;
+    private static GeneralInter generalInter = null;
 
     public static synchronized Factory getInstance() {
         if (instance == null) {
@@ -40,21 +42,28 @@ public class Factory {
         return tRDAO;
     }
 
-/*
-    public TOpsTRoutsDAO getTOpsTRoutsDAO() {
-        if (totsDAO == null) {
-            totsDAO = new TOpsTRoutsDAOImpl();
+    /*
+        public TOpsTRoutsDAO getTOpsTRoutsDAO() {
+            if (totsDAO == null) {
+                totsDAO = new TOpsTRoutsDAOImpl();
+            }
+            return totsDAO;
         }
-        return totsDAO;
-    }
 
-*/
-public WorkSheetDAO getWorkSheetDAO(){
-    if(workSheetDAO == null){
-        workSheetDAO =new WorkSheetDAOImpl();
+    */
+    public WorkSheetDAO getWorkSheetDAO() {
+        if (workSheetDAO == null) {
+            workSheetDAO = new WorkSheetDAOImpl();
         }
         return workSheetDAO;
     }
+
+
+    public GeneralInter getGeneralInter() {
+        if (generalInter == null) {
+            generalInter = new WSStateKeeperImpl();
+        }
+return generalInter;
+    }
+
 }
-
-
